@@ -1,0 +1,20 @@
+author_name = "REPLACE_ME"
+author_email = "REPLACE_ME"
+difficulty_explanation = "REPLACE_ME"
+solution_explanation = "REPLACE_ME"
+verification_explanation = "REPLACE_ME"
+category = "REPLACE_ME"
+subcategory = "REPLACE_ME"
+tags = ["REPLACE_ME"]
+expert_time_estimate_hours = 0
+artifacts = ["/app/"]
+
+[agent]
+timeout_sec = 0
+
+[verifier]
+timeout_sec = 0
+environment_mode = "separate"
+
+[environment]
+cpus = 1
