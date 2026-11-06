@@ -29,7 +29,7 @@ shortcut_check:
 strengthening:
 ```
 
-`naive_approaches` is one line each: the approach, the instruction sentence it fails, and the local reward once run (`NOT VERIFIED` until then). `strengthening` stays empty until a measurement or a receipt shows the task is too easy or too short. Name the page 13 move and the instruction sentence added with it.
+`naive_approaches` is one line each: the approach, the instruction sentence it fails, and the local reward once run (`NOT VERIFIED` until then). `strengthening` stays empty until a measurement or a receipt shows the task is too easy or too short. Name the page 15 move and the instruction sentence added with it.
 
 The author’s private stage dependence, if it helps, stays here as `stages_private`. Do not copy it into `instruction.md`.
 
@@ -40,10 +40,10 @@ Quotes only. Not results. Numeric pair is unresolved. See `03-difficulty-and-hor
 ```
 difficult_qualitative: years of domain expertise, not volume; a few undergraduate days is too easy (p.3)
 solvable_qualitative: an expert who knows the answer can implement it in a few hours (p.3)
-stage2_difficulty_ceiling: count_true(full_credit_boolean) ≤ 2 of 8 (p.12) — unresolved against acceptance
-acceptance_pass_rate: ≤ 0.6, written “i.e 4/8” (p.25) — unresolved against Stage 2
-stage2_horizon_ceiling: median(assistant_message_count) > 80 (p.12) — unresolved against acceptance
-acceptance_turns: more than 35 turns of all passing runs (p.25) — unresolved against Stage 2
+stage2_difficulty_ceiling: count_true(full_credit_boolean) ≤ 4 of 8 (p.14) — unresolved against acceptance pass-rate wording
+acceptance_pass_rate: ≤ 0.6, written “i.e 4/8” (p.31) — unresolved against Stage 2
+stage2_horizon_ceiling: median(assistant_message_count) > 35 (p.14) — unresolved against acceptance minimum
+acceptance_turns: more than 35 turns of all passing runs (p.31) — unresolved against Stage 2 median
 ```
 
 ## Local measurements

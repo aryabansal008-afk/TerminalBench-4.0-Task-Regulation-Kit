@@ -16,11 +16,11 @@ Canary decision:
 | Stage | Outcome string | Rule or predicate | Observed value |
 | --- | --- | --- | --- |
 | Stage 1 |  |  |  |
-| Stage 2 difficulty |  | Stage 2 prints `count_true(full_credit_boolean) ≤ 2`. Acceptance prints pass rate ≤ 0.6 “i.e 4/8”. Record both. `C-DIFFICULTY` is unresolved. |  |
-| Stage 2 long_horizon |  | Stage 2 prints `median(assistant_message_count) > 80`. Acceptance prints more than 35 turns of all passing runs. Record both. `C-HORIZON` is unresolved. |  |
+| Stage 2 difficulty |  | Stage 2 prints `count_true(full_credit_boolean) ≤ 4`. Acceptance prints pass rate ≤ 0.6 “i.e 4/8”. Record both. `C-DIFFICULTY` is unresolved. |  |
+| Stage 2 long_horizon |  | Stage 2 prints `median(assistant_message_count) > 35`. Acceptance prints more than 35 turns of all passing runs. Record both. `C-HORIZON` is unresolved. |  |
 
 ## Not claimed
 
-- Stage 3, while deferred.
+- Platform Stage 3, until an ACCEPTED / REJECTED / COULD NOT COMPLETE receipt exists. A Stage 2 PASS is not this row.
 - Acceptance, until maintainer sign-off and the hacker–fixer loop are recorded.
 - Batch quotas, unless `batch-slot.md` is attached.

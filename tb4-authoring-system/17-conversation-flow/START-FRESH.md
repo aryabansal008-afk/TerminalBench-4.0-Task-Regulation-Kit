@@ -88,6 +88,8 @@ Write evidence/<slug>/proposal.md and evidence/<slug>/proposal-count.txt. Do not
 
 ## Stage 3 — Approval and grant
 
+This conversation-flow stage is the **grant**. It is not platform Stage 3 qualitative review (`14-platform-review/STAGE-3.md`).
+
 **Purpose.** Read the platform receipt. Proceed only if the grant is `ACTIVE`. Otherwise revise the proposal or stop.
 
 **Entry.** `proposal.md` was submitted. The user pastes the receipt in this message. The agent cannot grant its own proposal.
@@ -128,26 +130,26 @@ Do not ask me to choose a category or a language. If the receipt’s category di
 
 **Reading order.** Core, frozen problem statement, `selection.md`, `05-instruction/INSTRUCTION.md`, `06-harbor-task/LAYOUT.md`, `06-harbor-task/METADATA.md`, `07-agent-environment/ENVIRONMENT.md`, `08-reference-solution/SOLUTION.md`, `09-verifier/VERIFIER.md`, `13-packaging/ARCHIVE-MEMBERSHIP.md`, `material/MATERIAL-CLASSES.md`. Then the skeletons.
 
-**Mandatory files.** Core, the files in that reading order, `material/agent-visible/instruction.md`, `material/agent-visible/task.toml`, `material/agent-visible/environment/Dockerfile`, `material/verifier-and-solution/solution/solve.sh`, `material/verifier-and-solution/solution/solve.py`, `material/verifier-and-solution/tests/Dockerfile`, `material/verifier-and-solution/tests/test.sh`, `material/verifier-and-solution/tests/test_outputs.py`.
+**Mandatory files.** Core, the files in that reading order, `material/agent-visible/instruction.md`, `material/agent-visible/task.toml`, `material/agent-visible/README.md`, `material/agent-visible/environment/Dockerfile`, `material/verifier-and-solution/solution/solve.sh`, `material/verifier-and-solution/solution/solve.py`, `material/verifier-and-solution/tests/Dockerfile`, `material/verifier-and-solution/tests/test.sh`, `material/verifier-and-solution/tests/test_outputs.py`.
 
 **Conditional files.** `01-taxonomy-and-batch/TAXONOMY.md` only for the chosen subcategory if GPU training needs the single-H100 rule (`REQ-TX-006`). `00-source/CONFLICT-REGISTER.md` sections `C-CANARY`, `C-TIMEOUT`, and `C-INTERNET`. Do not attach the platform rule catalog unless a live rejection names a rule.
 
 **Prior outputs.** Frozen problem statement, `selection.md`, construction block of `complexity.md`. The instruction’s graded conditions must match the frozen text. A material change is a new task, not a quiet edit.
 
-**Requirement IDs.** `REQ-BD-001` through `REQ-BD-021`, `REQ-BD-026`, `REQ-PR-027`, `REQ-SC-check-task-slug`, `REQ-SC-check-task-fields`, `REQ-SC-check-task-timeout`, `REQ-SC-check-instruction-suffix`, `REQ-SC-check-allow-internet`, `REQ-SC-check-separate-verifier`, `REQ-SC-check-dockerfile-references`, `REQ-SC-check-dockerfile-sanity`, `REQ-SC-check-dockerfile-platform`, `REQ-SC-check-pip-pinning`, `REQ-SC-check-nproc`, `REQ-SC-check-task-absolute-path`. `REQ-BD-026` is the oracle entry `solution/solve.sh`. The oracle transcript that shows it ran is stage 5, not this stage.
+**Requirement IDs.** `REQ-BD-001` through `REQ-BD-021`, `REQ-BD-026`, `REQ-PR-027`, `REQ-SC-check-task-slug`, `REQ-SC-check-task-fields`, `REQ-SC-check-task-timeout`, `REQ-SC-check-task-readme`, `REQ-SC-check-publication-name`, `REQ-SC-check-instruction-suffix`, `REQ-SC-check-allow-internet`, `REQ-SC-check-separate-verifier`, `REQ-SC-check-dockerfile-references`, `REQ-SC-check-dockerfile-sanity`, `REQ-SC-check-dockerfile-platform`, `REQ-SC-check-pip-pinning`, `REQ-SC-check-nproc`, `REQ-SC-check-task-absolute-path`. `REQ-BD-026` is the oracle entry `solution/solve.sh`. The oracle transcript that shows it ran is stage 5, not this stage.
 
-**Checks before advancing.** No `REPLACE_ME`. Slug is at most three lowercase kebab tokens. `artifacts` is top-level. `[verifier] environment_mode = "separate"`. Agent Dockerfile does not copy `tests/` or `solution/`. Suffix `N` equals `[agent].timeout_sec`. That integer is marked provisional in the decision log (`C-TIMEOUT`). `allow_internet` is not set false. No canary string was invented (`C-CANARY`). Coverage rows exist for every graded sentence.
+**Checks before advancing.** No `REPLACE_ME`. Slug is at most three lowercase kebab tokens. `[task] name = "terminal-bench/<slug>"`. Task `README.md` has the four required headings. `artifacts` is top-level. `[verifier] environment_mode = "separate"`. Agent Dockerfile does not copy `tests/` or `solution/`. `[agent].timeout_sec` is 28800 and the suffix matches. `allow_internet` is not set false. §4.3 canary markers are present. Coverage rows exist for every graded sentence.
 
 **Outputs.** `tasks/<slug>/`, assembled from the agent-visible and verifier skeletons. `evidence/<slug>/coverage.md`. Decision-log lines for `C-CANARY`, `C-TIMEOUT`, and `C-INTERNET`, each marked provisional where the conflict is unresolved.
 
-**Failure.** If the frozen statement and the instruction disagree, stop and name the sentence. Do not “fix” the proposal locally. If the reference solution cannot finish inside the provisional timeout, widen the task’s work or record a new provisional integer. Do not use an impossible timeout as difficulty.
+**Failure.** If the frozen statement and the instruction disagree, stop and name the sentence. Do not “fix” the proposal locally. If the reference solution cannot finish inside 28800 seconds, reduce the work. Do not use an impossible timeout as difficulty. Do not change `[agent].timeout_sec` away from 28800.
 
 **Next.** Stage 5. Do not package.
 
 ```
 You are implementing the granted task. You have no memory beyond the attached files. The frozen problem statement in proposal-receipt.txt is the scope.
 
-Build the task directory at tasks/<slug>/ from the attached skeletons. Follow the implementation files in START-FRESH.md stage 4, in that order. Keep tests and solution out of the agent image. Do not invent a canary string. Do not set allow_internet = false. Any timeout_sec is provisional under C-TIMEOUT, and the instruction suffix must use that same integer.
+Build the task directory at tasks/<slug>/ from the attached skeletons. Follow the implementation files in START-FRESH.md stage 4, in that order. Keep tests and solution out of the agent image. Keep the SOP v3.0 canary placeholder; do not invent a third canary. Do not set allow_internet = false. [agent].timeout_sec is 28800 and the instruction suffix must match.
 
 Write coverage.md in the evidence pack. Do not run packaging. Do not claim Oracle, NOP, difficulty, or long horizon. If the frozen statement is missing, stop.
 ```
@@ -168,11 +170,11 @@ Write coverage.md in the evidence pack. Do not run packaging. Do not claim Oracl
 
 **Requirement IDs.** `REQ-W-009`, `REQ-BD-022`, `REQ-BD-023`, `REQ-BD-024`, `REQ-BD-025`, `REQ-BD-026` for the oracle run of `solution/solve.sh`, `REQ-SC-000`, every `REQ-SC-check-*` row, `REQ-RB-01` through `REQ-RB-30`, `REQ-RB-LOCAL`, `REQ-S2-006` and `REQ-S2-007` only as the repair rules if a naive attempt or dry-run is too easy. They are not a claim that Stage 2 has run.
 
-**Checks before advancing.** `tools/check_task.py` was run with an explicit `--canary-policy` and the saved report shows exit 0. A missing report is `NOT VERIFIED`. Rubric rows are `PASS` or `NOT APPLICABLE` with a reason. A `FAIL` is fixed before the stage advances. Oracle reward token is `1.0`. NOP reward token is `0.0`. Each naive attempt named in `complexity.md` is `0.0`. A missing transcript is `NOT VERIFIED`, and the stage does not advance. Those numbers sit in the local-measurement block only. Platform-verdict fields stay blank. A dry-run, if performed, is recorded as local. A handful of local turns is a reason to strengthen the task, not a Stage 2 median.
+**Checks before advancing.** `tools/check_task.py` was run and the saved report shows exit 0. A missing report is `NOT VERIFIED`. Rubric rows are `PASS` or `NOT APPLICABLE` with a reason. A `FAIL` is fixed before the stage advances. Oracle reward token is `1.0`. NOP reward token is `0.0`. Each naive attempt named in `complexity.md` is `0.0`. A missing transcript is `NOT VERIFIED`, and the stage does not advance. Those numbers sit in the local-measurement block only. Platform-verdict fields stay blank. A dry-run, if performed, is recorded as local. A handful of local turns is a reason to strengthen the task, not a Stage 2 median.
 
 **Outputs.** `evidence/<slug>/checker-report.txt`, `rubric-review.md`, `oracle.txt`, `nop.txt`, updated `complexity.md` local block, and `dry-run.md` if a dry-run was run. The user runs Harbor. If Harbor was not run, the agent writes `NOT VERIFIED` and does not invent a reward.
 
-**Failure.** Oracle below `1.0`: fix the solution or the verifier, then re-run. NOP at `1.0` or a naive attempt at `1.0`: tighten tests only for a requirement the instruction already states, or add a page 13 constraint to the instruction and the coverage table together. Do not hide a field. Do not pad turns. If the frozen proposal’s graded conditions would change, stop and return to stage 2 as a new task.
+**Failure.** Oracle below `1.0`: fix the solution or the verifier, then re-run. NOP at `1.0` or a naive attempt at `1.0`: tighten tests only for a requirement the instruction already states, or add a page 15 constraint to the instruction and the coverage table together. Do not hide a field. Do not pad turns. If the frozen proposal’s graded conditions would change, stop and return to stage 2 as a new task.
 
 **Next.** `REVIEW-BEFORE-PACKAGING.md`. Do not upload.
 
@@ -181,7 +183,7 @@ You are validating the task tree I attached. You have no memory beyond these fil
 
 Follow 11-validation/VALIDATION.md, 10-checks-and-coverage/RUBRIC.md, and 03-difficulty-and-horizon/GENUINE-COMPLEXITY.md. Put Oracle, NOP, naive-attempt, and dry-run numbers only in the local-measurement block of complexity.md. Leave platform verdicts blank. Do not say the task passed Stage 2 or acceptance.
 
-Do not package and do not upload. If a naive attempt scores 1.0, strengthen by a page 13 move that is also written into the instruction. Do not add a hidden test.
+Do not package and do not upload. If a naive attempt scores 1.0, strengthen by a page 15 move that is also written into the instruction. Do not add a hidden test.
 ```
 
 ## Folder coverage
@@ -191,7 +193,7 @@ Every directory in `tb4-authoring-system/` is listed. A folder is not skipped be
 | Folder | Purpose | Stage | Files | Class | Why, if not mandatory | Evidence |
 | --- | --- | --- | --- | --- | --- | --- |
 | `tb4-authoring-system/` | Root of the authoring system. Not a task. | 1 | `README.md`, `AGENTS.md` | Mandatory | Later stages reattach `AGENTS.md` as core. | `handoff.md` lists it. |
-| `00-source/` | How to read the PDF, the register, conflicts, and gaps. | 1, and any stage whose IDs are pasted | `HOW-TO-READ.md`, `CONFLICT-REGISTER.md`, `UNRESOLVED.md`, `UNAVAILABLE-SOURCES.md`, `REGISTER.md`, `REGISTER.csv`, `INVENTORY.md`, `CONTRADICTIONS.md`, `PLATFORM-RULE-CATALOG.md` | Mandatory for `HOW-TO-READ.md` and `CONFLICT-REGISTER.md` | `REGISTER.md` is pasted by ID, not attached whole. `INVENTORY.md` is `NOT APPLICABLE` during creation unless a page citation is disputed. `PLATFORM-RULE-CATALOG.md` is `NOT APPLICABLE` until a receipt names a rule. `CONTRADICTIONS.md` only points at the conflict register. | Pasted IDs in the bundle. Catalog stays `NOT APPLICABLE` in `applicability.md`. |
+| `00-source/` | How to read the PDF, the register, conflicts, and gaps. | 1, and any stage whose IDs are pasted | `HOW-TO-READ.md`, `CONFLICT-REGISTER.md`, `UNRESOLVED.md`, `UNAVAILABLE-SOURCES.md`, `REGISTER.md`, `REGISTER.csv`, `INVENTORY.md`, `REQUIREMENT-CLASSES.md`, `HISTORICAL-PREVIOUS-PDF.md`, `CONTRADICTIONS.md`, `PLATFORM-RULE-CATALOG.md` | Mandatory for `HOW-TO-READ.md` and `CONFLICT-REGISTER.md` | `REGISTER.md` is pasted by ID, not attached whole. `INVENTORY.md`, `REQUIREMENT-CLASSES.md`, and `HISTORICAL-PREVIOUS-PDF.md` are `NOT APPLICABLE` during creation unless a class or retired number is disputed. `PLATFORM-RULE-CATALOG.md` is `NOT APPLICABLE` until a receipt names a rule. `CONTRADICTIONS.md` only points at the conflict register. | Pasted IDs in the bundle. Catalog stays `NOT APPLICABLE` in `applicability.md`. |
 | `01-taxonomy-and-batch/` | Full category and subcategory list, and batch quotas. | 1 | `TAXONOMY.md`, `BATCH.md` | Mandatory | | `selection.md` `batch_context`. |
 | `02-ideation/` | Candidate comparison and the selection rules. | 1 | `IDEATION.md`, `SELECTION.md` | Mandatory | Not re-run at stages 2–5 unless `CONTINUE-TASK.md` finds no `selection.md`. | `selection.md`. |
 | `03-difficulty-and-horizon/` | Genuine complexity and the unread ceilings. | 1 and 5 | `GENUINE-COMPLEXITY.md`, `DESIGN.md` | Mandatory | Stage 1 fills construction and quotes. Stage 5 fills local measurements only. | `complexity.md` three blocks. |
@@ -205,12 +207,12 @@ Every directory in `tb4-authoring-system/` is listed. A folder is not skipped be
 | `11-validation/` | Oracle, NOP, naive attempts. | 5 | `VALIDATION.md` | Mandatory | `NOT APPLICABLE` before the tree exists. | Local block of `complexity.md`. |
 | `12-local-trials/` | What a dry-run may prove. | 5 | `TRIALS.md` | Mandatory to read | The file is in the stage 5 reading order so a local count is not treated as Stage 2. Running a dry-run is conditional. If none was run, `dry-run.md` is `NOT APPLICABLE` with that reason. | `applicability.md` and `dry-run.md`. |
 | `13-packaging/` | ZIP membership. Upload procedure is the other flow. | 4 | `ARCHIVE-MEMBERSHIP.md`, `PACKAGE.md` | Conditional | `ARCHIVE-MEMBERSHIP.md` is mandatory at stage 4 so the tree can exclude private files. `PACKAGE.md` is `NOT APPLICABLE` until `BUILD-ZIP.md`. | Task directory contains no evidence files. |
-| `14-platform-review/` | Stage 1, Stage 2, acceptance. | 5 | `STAGE-1.md`, `STAGE-2.md`, `ACCEPTANCE.md` | `NOT APPLICABLE` | No upload has happened. Repair rules `REQ-S2-006` and `REQ-S2-007` are read from `GENUINE-COMPLEXITY.md`, not as a Stage 2 verdict. | Platform block of `complexity.md` left blank. |
+| `14-platform-review/` | Stage 1, Stage 2, Stage 3, acceptance. | 5 | `STAGE-1.md`, `STAGE-2.md`, `STAGE-3.md`, `ACCEPTANCE.md` | `NOT APPLICABLE` | No upload has happened. Repair rules `REQ-S2-006` and `REQ-S2-007` are read from `GENUINE-COMPLEXITY.md`, not as a Stage 2 verdict. Platform Stage 3 is not the grant step. | Platform block of `complexity.md` left blank. |
 | `15-revision/` | Change impact after a failure or an edit. | Any failure | `REVISION.md` | Conditional | `NOT APPLICABLE` while the stage checks pass and nothing is edited. Mandatory when a stage fails or the frozen scope would change. | `revision-log.md`. |
 | `16-evidence-and-handoff/` | Where records go, and the human gates. | Every stage | `EVIDENCE.md` | Mandatory | | The evidence file named by that stage exists or is `NOT STARTED`. |
 | `17-conversation-flow/` | This sequence, attachments, resume, review, ZIP, traceability. | The stage being run | `START-FRESH.md`, `ATTACHMENT-MANIFEST.md`, `CONTINUE-TASK.md`, `REVIEW-BEFORE-PACKAGING.md`, `BUILD-ZIP.md`, `TRACEABILITY.md` | Mandatory for `START-FRESH.md` and `ATTACHMENT-MANIFEST.md` | `CONTINUE-TASK.md` is mandatory only when resuming. `REVIEW-BEFORE-PACKAGING.md` and `BUILD-ZIP.md` are `NOT APPLICABLE` until stage 5 has finished. `TRACEABILITY.md` is mandatory when an ID’s owner is unclear. | `handoff.md`. |
 | `material/` | Which files the benchmark agent may see. | 4 | `MATERIAL-CLASSES.md` | Mandatory | `NOT APPLICABLE` before implementation. | Task tree assembled from the two skeleton trees. |
-| `material/agent-visible/` | Instruction, toml, and agent image skeletons. | 4 | `instruction.md`, `task.toml`, `environment/` | Mandatory | | Copies live in the task directory, not in this folder. |
+| `material/agent-visible/` | Instruction, toml, README, and agent image skeletons. | 4 | `instruction.md`, `task.toml`, `README.md`, `environment/` | Mandatory | Task README headings are required. This is not the authoring-system root README. | Copies live in the task directory, not in this folder. |
 | `material/agent-visible/environment/` | Skeleton agent Dockerfile. | 4 | `Dockerfile` | Mandatory | | Task `environment/Dockerfile` does not copy `tests/` or `solution/`. |
 | `material/agent-visible/environment/data/` | Placeholder so the fixture directory exists. | 4 | `.gitkeep` | Conditional | `NOT APPLICABLE` if the task has no file inputs and the Dockerfile does not copy `data/`. If it is copied, replace `.gitkeep` with real fixtures. | Instruction paths match files in the task tree. |
 | `material/private-authoring/` | Blank records. Not submitted. | 1, then the stage that fills each template | Templates in that folder | Mandatory for `selection.md` and `complexity.md` at stage 1; each other template is mandatory at the stage `EVIDENCE.md` names it | A template not yet reached is `NOT STARTED`, not `PASS`. | Filled copy under `evidence/<slug>/`. |

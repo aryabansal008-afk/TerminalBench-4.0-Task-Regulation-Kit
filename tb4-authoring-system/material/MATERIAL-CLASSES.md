@@ -28,4 +28,4 @@ The resulting tree is what `tools/check_task.py` and `tools/package_task.py` rea
 
 ## Canary lines in these skeletons
 
-`C-CANARY` is unresolved. The skeletons contain no canary line because this system will not invent a string. That omission is provisional. It does not satisfy the pages that require a canary.
+Skeletons include the two SOP v3.0 Harbor canary lines, using `PRIVATE_PROPOSAL_CANARY_REPLACE_ME` unless a proposal-specific value was issued. Do not invent a third value. Do not put markers in binary fixtures.

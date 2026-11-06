@@ -2,7 +2,7 @@
 
 Stage 1 is one sequenced job: `I01`, then `G01` through `G06`, then `P04`. The author does not click gates one by one. A clean run is described as well under a minute, with most of the time in G04 through G06 (environment build, verifier controls, package quality). `I01` binds the snapshot first. `NOT_REACHED` on a later gate means an earlier gate stopped the job. The platform fails closed.
 
-The durable event log is the phase order. Rule IDs visible in the screenshots are catalogued in `00-source/PLATFORM-RULE-CATALOG.md`. Severity badges in those screenshots were not reliably column-aligned (`U-SEVERITY-ALIGNMENT`). Page 9’s three classes still apply: `REQUIRED`, `OPTIONAL / ADVISORY`, `IF APPLICABLE`.
+The durable event log is the phase order. Rule IDs visible in the screenshots are catalogued in `00-source/PLATFORM-RULE-CATALOG.md`. Severity badges in those screenshots were not reliably column-aligned (`U-SEVERITY-ALIGNMENT`). Page 11’s three classes still apply: `REQUIRED`, `OPTIONAL / ADVISORY`, `IF APPLICABLE`.
 
 ## Outcomes
 
@@ -29,7 +29,7 @@ Use the catalog for rule IDs. The gate responsibilities are:
 
 The screenshots label a gate “Harbor + TB3” while the prose is TB4. That label conflict is `C-TB3-LABEL` and is unresolved. Follow the rule text you can read. Do not invent a TB3 procedure that this PDF does not print.
 
-Canary rule names `TB3.CANARY_MISSING`, `TB3.CANARY_FORMAT`, and `TB3.CANARY_ADVISORY` appear in the screenshots. Whether they still fire is `C-CANARY`. Archive the receipt if one fires. Do not mint a format.
+SOP v3.0 names `TB4.CANARY_MISSING`, `TB4.CANARY_FORMAT`, and `TB4.CANARY_ADVISORY` as advisory G02 rules. Older screenshots showed `TB3.CANARY_*`. Archive whatever id the live log prints. Missing markers must not be treated as a Stage 1 rejection.
 
 ## Upload limits that bind this stage
 
@@ -39,4 +39,4 @@ These sentences are the source limits. The packing procedure is `13-packaging/PA
 - Each corrected ZIP is Version N of N. Stage 1 re-runs from the start. Only one version with every gate green reaches Stage 2. Partial credit across versions does not count. Arrive green.
 - Identical bytes fail with `File hash already exists`.
 - Hourly evaluation limit: 2 unique versions. Daily evaluation limit: 5 unique versions.
-- How many reuploads a task may have is `C-REUPLOADS`: the table says 7 and the prose says 3. Neither number is applied as the budget.
+- Reuploads per task: limits table 7. Leftover “3” sentences are flagged (`C-REUPLOADS`) and are not the budget.

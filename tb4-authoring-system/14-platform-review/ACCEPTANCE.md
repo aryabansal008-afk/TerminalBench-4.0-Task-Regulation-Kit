@@ -1,6 +1,6 @@
 # Human review, QC, and final acceptance
 
-A platform Stage 2 `PASS` is not acceptance. Page 26: a task is accepted only once it clears the acceptance criteria and is merged following the pipeline — not upon submission and not upon passing static checks alone.
+A platform Stage 2 `PASS` is not acceptance. Page 32: a task is accepted only once it clears the acceptance criteria and is merged following the pipeline — not upon submission and not upon passing static checks alone.
 
 `C-FOUR-CRITERIA`: the heading says “all four criteria” and the page prints six bullets. The word “four” is undefined. Execute every bullet that is printed. Do not drop two because the heading says four.
 
@@ -19,11 +19,11 @@ Each task must pass the full automated and human review pipeline defined in `TAS
 
 **Source.** The change table says final review is QC review and then Super QC, a second expert layer (`C-QC-LAYERS`, superseded by addition). Super QC’s criteria are not in the PDF (`U-SUPER-QC`). Do not invent the checklist. Do not skip the layer. The evidence pack is what a second reviewer needs in order to re-grade the rubric without hunting.
 
-Stage 3 in the UI is `Qualitative checks` and is marked `DEFERRED`. Do not call a deferred tab a QC pass, and do not equate Stage 3 with Super QC or with the 9 Quality Dimensions (`C-LEGACY-CARDS`, `C-NINE-DIMENSIONS`).
+Platform Stage 3 is the qualitative acceptance review. Procedure: `14-platform-review/STAGE-3.md`. A Stage 2 `PASS` is not acceptance. Do not equate Stage 3 with Super QC or with the 9 Quality Dimensions (`C-LEGACY-CARDS`, `C-NINE-DIMENSIONS`).
 
 ## Numbers that are not settled by Stage 2
 
-The acceptance page states 8 rollouts, pass rate ≤ 0.6 “i.e 4/8”, more than 35 assistant turns on all passing runs, and a timeout limit of 8 hours, on an anonymous model close to GPT-6-Sol-xhigh. Archive those sentences beside the Stage 2 observations. Item 3 on page 25 refers to difficulty columns and turn-count columns the PDF does not print (`C-MISSING-COLUMNS`). Do not self-reject or self-accept on an imagined second column.
+The acceptance page states 8 rollouts, pass rate ≤ 0.6 “i.e 4/8”, more than 35 assistant turns on all passing runs, and a timeout limit of 8 hours, on an anonymous model that “is GPT-6-Sol-xhigh performance.” Archive those sentences beside the Stage 2 observations (`≤ 4` full credit; median `> 35`). Item 3 on page 31 refers to difficulty columns and turn-count columns the PDF does not print (`C-MISSING-COLUMNS`). Do not self-reject or self-accept on an imagined second column.
 
 ## Exit
 

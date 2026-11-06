@@ -13,12 +13,12 @@ Any edit after `record_status` is `PASS` invalidates the affected evidence. The 
 | Command | What it does | What it does not do |
 | --- | --- | --- |
 | `python3 tools/check_proposal.py evidence/<slug>/proposal.md` | Character count, paragraph count, headings, `REPLACE_ME`, steering phrases | Does not judge the six review criteria or the grant |
-| `python3 tools/check_task.py tasks/<slug> --canary-policy no-canary` or `--canary-policy required --canary-string <issued>` | Local preflight. Exits 2 if the policy flag is omitted | Does not resolve `C-CANARY`. Does not run Harbor |
-| `python3 tools/package_task.py tasks/<slug> --out tasks/<slug>.zip --canary-policy <same>` | Refuses symlinks, runs the preflight unless `--skip-check` is passed, writes one top-level directory named the task folder, prints SHA-256, prints `not uploaded` | Does not upload. The single top-level directory is provisional (`U-ZIP-ROOT`). The ZIP file stays beside the tree |
+| `python3 tools/check_task.py tasks/<slug>` | Local preflight: slug, README headings, `[task] name`, agent timeout 28800, canary warnings | Does not run Harbor. Canary issues are warnings |
+| `python3 tools/package_task.py tasks/<slug> --out tasks/<slug>.zip` | Refuses symlinks, runs the preflight unless `--skip-check` is passed, writes wrapped (default) or `--layout flat`, prints SHA-256, prints `not uploaded` | Does not upload. The ZIP file stays beside the tree |
 
 Do not pass `--skip-check` for an archive that will be marked ready.
 
-`<slug>` and the canary choice are placeholders. The task tree is `tasks/<slug>`. The archive is `tasks/<slug>.zip`. `no-canary` is not a closed reading of the PDF. `required` needs a string the platform issued. This system does not supply one.
+`<slug>` is a placeholder. The task tree is `tasks/<slug>`. The archive is `tasks/<slug>.zip`. Canary markers follow SOP v3.0 §4.3. Do not invent a proposal-specific value.
 
 ## Tooling named by the PDF and not in this repo
 
@@ -82,11 +82,11 @@ Leave the result `NOT VERIFIED` until the user pastes a transcript. Do not inven
 
 **Evidence.** Manifest fields `timeout_agent`, `timeout_verifier`, `suffix_n`, `category`, `subcategory`.
 
-**Pass.** Required metadata fields are non-empty and not `REPLACE_ME`. `category` matches `selection.md`. `[verifier] environment_mode = "separate"`. Top-level `artifacts` is before any `[table]` header. Suffix integer equals `[agent].timeout_sec`. The integer is still provisional (`C-TIMEOUT`). `allow_internet` is not `false` (`C-INTERNET` stays unresolved). GPU types, if any, are from the canonical list. Training GPUs are a single `H100`.
+**Pass.** Required metadata fields are non-empty and not `REPLACE_ME`. `category` matches `selection.md`. `[task] name = "terminal-bench/<slug>"`. Task `README.md` has the four required headings. `[agent].timeout_sec` is 28800. Suffix integer equals that value. `[verifier] environment_mode = "separate"`. Top-level `artifacts` is before any `[table]` header. `allow_internet` is not `false` (`C-INTERNET` stays unresolved). GPU types, if any, are from the canonical list. Training GPUs are a single `H100`.
 
 **Fail.** A mismatch between suffix and timeout, a locked category that differs from `selection.md`, or an empty required field.
 
-**Remediation.** Edit `task.toml` or the suffix so they match. Do not treat 18000 or 8 hours as the resolved timeout.
+**Remediation.** Edit `task.toml` or the suffix so they match. `[agent].timeout_sec` must remain 28800.
 
 ## Step 5 — Instruction, solution, and verifier
 
@@ -143,7 +143,7 @@ Leave the result `NOT VERIFIED` until the user pastes a transcript. Do not inven
 **Command.**
 
 ```
-python3 tools/check_task.py tasks/<slug> --canary-policy <no-canary|required>
+python3 tools/check_task.py tasks/<slug>
 ```
 
 **Pass.** The checker exit is 0 and the report is stored. Each rubric criterion is `PASS` or `NOT APPLICABLE` with a reason. `NOT VERIFIED` is not a pass.
@@ -205,10 +205,10 @@ The checker is not G06 and not `harbor check`.
 **Command.**
 
 ```
-python3 tools/package_task.py tasks/<slug> --out tasks/<slug>.zip --canary-policy <no-canary|required>
+python3 tools/package_task.py tasks/<slug> --out tasks/<slug>.zip
 ```
 
-**Evidence.** The script’s stdout pasted into `sha256.txt` and the member list from the extraction check in step 13. Version field is the next integer the user supplies from the platform, or `SUPPLY` if the UI has not shown it. Hourly limit 2 and daily limit 5 are recorded as source limits. The 3-versus-7 reupload count stays `BLOCKED` (`C-REUPLOADS`). Do not choose 3 or 7.
+**Evidence.** The script’s stdout pasted into `sha256.txt` and the member list from the extraction check in step 13. Version field is the next integer the user supplies from the platform, or `SUPPLY` if the UI has not shown it. Hourly limit 2 and daily limit 5 are recorded as source limits. Reupload budget is 7 from the limits table. Leftover “3” sentences are flagged.
 
 **Pass.** Stdout contains `sha256` and `not uploaded`, and step 13’s listing matches the task files plus the single top-level directory.
 

@@ -28,7 +28,7 @@ Archive the command, the exit, and the reward token in the private evidence pack
 - A partial artifact that has the right path and the wrong values.
 - Each naive approach named in `03-difficulty-and-horizon/GENUINE-COMPLEXITY.md`.
 
-Each must score `0.0`. If a naive approach scores `1.0`, that approach meets the stated requirements. Strengthen by a page 13 move that is also added to the instruction. Do not hide a field, and do not add a test for a condition the instruction does not state.
+Each must score `0.0`. If a naive approach scores `1.0`, that approach meets the stated requirements. Strengthen by a page 15 move that is also added to the instruction. Do not hide a field, and do not add a test for a condition the instruction does not state.
 
 ## Adversarial attempts and reward hacking
 

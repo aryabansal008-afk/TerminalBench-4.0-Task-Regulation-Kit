@@ -12,7 +12,7 @@ Do this before drafting the proposal. The proposal is a compressed statement of 
 
 ## Realism
 
-**Source.** Interesting: someone could be paid to do this, or a real group wants it solved. Obscure for its own sake does not count. Rubric E, real-world relevance: a realistic, valuable scenario someone would actually do, not a contrived puzzle. Page 7 prohibits a toy, a demo, a LeetCode-style problem, a math olympiad problem, and any task whose premise is “invent a hard problem to test the model.”
+**Source.** Interesting: someone could be paid to do this, or a real group wants it solved. Obscure for its own sake does not count. Rubric E, real-world relevance: a realistic, valuable scenario someone would actually do, not a contrived puzzle. Page 8 prohibits a toy, a demo, a LeetCode-style problem, a math olympiad problem, and any task whose premise is “invent a hard problem to test the model.”
 
 Review examples contain a “Client-fit note”: industrial purpose, not a toy, contest problem, or mathematical exercise. That note is observed reviewer practice in the PDF’s examples. It is not a seventh named proposal criterion. Do not add a “Client-fit” heading to the proposal.
 

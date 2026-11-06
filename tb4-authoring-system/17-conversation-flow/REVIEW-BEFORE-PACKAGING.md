@@ -49,8 +49,8 @@ Also update `complexity.md` only to fix a number that was filed in the wrong blo
 
 - Frozen problem statement and `instruction.md` name the same artifact, inputs, and graded conditions.
 - Category and language match `selection.md`. They were recorded before creation.
-- `decision-log.md` has provisional blocks for `C-CANARY` and `C-TIMEOUT`. No invented canary string is in the tree.
-- `tools/check_task.py --canary-policy <the provisional choice>` was run on this tree. The saved report matches this tree.
+- `decision-log.md` records §4.3 canary markers and agent timeout 28800. No invented proposal-specific canary is in the tree.
+- `tools/check_task.py` was run on this tree. The saved report matches this tree.
 - Coverage has no instruction sentence without a test and no test without an instruction sentence.
 - Oracle local reward is `1.0`. NOP local reward is `0.0`. Each naive attempt is `0.0`. Partial NOP is not recorded as a platform ruling (`C-REWARD-LITERAL`).
 - Rubric fails are fixed, not relabeled.
@@ -65,7 +65,7 @@ You are reviewing a Terminal-Bench 4 task before packaging. You have no earlier 
 
 Follow 17-conversation-flow/REVIEW-BEFORE-PACKAGING.md. Copy material/private-authoring/pre-package-review.md to evidence/<slug>/pre-package-review.md and set each check to PASS, FAIL, BLOCKED, NOT VERIFIED, or NOT APPLICABLE. Repair FAIL rows only when 15-revision/REVISION.md allows the edit without changing the frozen proposal. If a repair would change graded conditions, stop and say a new proposal is required.
 
-Do not invent Harbor output. Do not package, do not upload, and do not fill platform verdicts. Do not ask me for a category or a task idea. Do not add a canary string. Use PASS, FAIL, BLOCKED, NOT VERIFIED, or NOT APPLICABLE. A missing check is NOT VERIFIED. Do not say the tree is ready while any mandatory check is FAIL, BLOCKED, or NOT VERIFIED. If every executable check is PASS and every unresolved conflict is recorded BLOCKED, name BUILD-ZIP.md as the next file and stop.
+Do not invent Harbor output. Do not package, do not upload, and do not fill platform verdicts. Do not ask me for a category or a task idea. Do not invent a proposal-specific canary. Use PASS, FAIL, BLOCKED, NOT VERIFIED, or NOT APPLICABLE. A missing check is NOT VERIFIED. Do not say the tree is ready while any mandatory check is FAIL, BLOCKED, or NOT VERIFIED. If every executable check is PASS and every unresolved conflict is recorded BLOCKED, name BUILD-ZIP.md as the next file and stop.
 ```
 
 ## Failure and the next step

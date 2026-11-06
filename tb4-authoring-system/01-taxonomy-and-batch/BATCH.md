@@ -1,6 +1,6 @@
 # Batch distribution
 
-Source quotas, pages 22–24. One author does not satisfy the batch alone. The batch owner keeps the running counts. `C-ACCOUNT-LIMITS` is unresolved: the same table says total submissions `1 (account-wide)` and task creation limit `2`. Whether one account can create a second task is not decided here. Quote the live quota.
+Source quotas, SOP v3.0 pages 28–30. One author does not satisfy the batch alone. The batch owner keeps the running counts. `C-ACCOUNT-LIMITS` is unresolved: the same table says total submissions `1 (account-wide)` and task creation limit `2`. Whether one account can create a second task is not decided here. Quote the live quota.
 
 ## Source quotas
 
@@ -21,4 +21,4 @@ Source quotas, pages 22–24. One author does not satisfy the batch alone. The b
 
 When no delivered-count record exists, batch context is missing. Do not invent the current fractions, do not treat every slot as empty, and do not treat every slot as full. Do not reserve a favorite category. `02-ideation/SELECTION.md` says which checks are skipped, and the selection record says `batch_context: missing`. A later batch owner can still apply the cap. This file does not name a preferred category.
 
-Page 7: difficulty, turn count, category distribution, and instruction style must all align with Terminal-Bench 3/4. Use this file, `TAXONOMY.md`, `05-instruction/INSTRUCTION.md`, and `03-difficulty-and-horizon/DESIGN.md`. Do not import a TB1 category list. The TB3 label on the taxonomy versus TB4 prose is `C-TB3-LABEL` and is unresolved. Follow the category spellings printed in this PDF.
+Page 8: difficulty, turn count, category distribution, and instruction style must all align with Terminal-Bench 3/4. Use this file, `TAXONOMY.md`, `05-instruction/INSTRUCTION.md`, and `03-difficulty-and-horizon/DESIGN.md`. Do not import a TB1 category list. The TB3 label on the taxonomy versus TB4 prose is `C-TB3-LABEL` and is unresolved. Follow the category spellings printed in this PDF.

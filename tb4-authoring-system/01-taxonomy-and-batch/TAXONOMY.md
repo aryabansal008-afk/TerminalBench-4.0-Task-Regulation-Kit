@@ -54,7 +54,7 @@ These three categories are deprioritized this round. Batch counting for them is 
 
 Science: Biology (genomics, proteomics, structural/computational biology, bioinformatics); Chemistry (molecular structure, spectra, crystallography, reaction/property analysis); Physics (simulation and numerical modeling, including electromagnetic/FDTD and inverse design); Earth (climate, hydrology, environmental modeling); Robotics (dynamics, trajectory optimization, control); Math (formalized mathematics and theorem proving in Coq, Lean, or Isabelle); Linguistics (computational and historical linguistics).
 
-**Practice.** Biology and chemistry tasks here are computational. A task whose procedure is wet-lab production of a pathogen, toxin, or chemical agent does not belong in this authoring system. That is a safety boundary of this system. The PDF’s own prohibition that does apply is page 7: no olympiad-style and no “invent a hard problem” tasks. Science / Math is formal mathematics, not a contest problem.
+**Practice.** Biology and chemistry tasks here are computational. A task whose procedure is wet-lab production of a pathogen, toxin, or chemical agent does not belong in this authoring system. That is a safety boundary of this system. The PDF’s own prohibition that does apply is page 8: no olympiad-style and no “invent a hard problem” tasks. Science / Math is formal mathematics, not a contest problem.
 
 Operations: Finance; Logistics; Supply chain; Claims; Compliance; Marketing.
 
@@ -62,6 +62,6 @@ Media: Music; Design.
 
 ## Selection
 
-**Source.** Pick the closest listed subcategory. The title, category, and body must describe the same task. The page 6 reject example failed because the title and category said fixed-point DSP while the body was a Rust ledger. That example is a failure mode, not a task to build. The scenario examples earlier in this file illustrate scope. They are not default tasks.
+**Source.** Pick the closest listed subcategory. The title, category, and body must describe the same task. The page 6 screenshot reject example failed because the title and category said fixed-point DSP while the body was a Rust ledger. That example is a failure mode, not a task to build. The scenario examples earlier in this file illustrate scope. They are not default tasks.
 
 **Practice.** The authoring agent chooses the category, subcategory, and task by `02-ideation/SELECTION.md`. It does not ask the user. The record is `evidence/<slug>/selection.md`. A custom subcategory needs one sentence on why no listed one fits, and it stays broad enough that a second task could reuse it.

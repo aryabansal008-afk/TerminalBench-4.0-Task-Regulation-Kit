@@ -10,8 +10,10 @@ review_status: NOT STARTED
 | --- | --- | --- |
 | Grant is `ACTIVE` and matches the instruction | NOT VERIFIED | `proposal-receipt.txt` |
 | Category and language match `selection.md` | NOT VERIFIED | `selection.md` |
-| `C-CANARY` recorded and not marked `PASS` | BLOCKED | `decision-log.md` |
-| `C-TIMEOUT` integer marked provisional | BLOCKED | `decision-log.md` |
+| §4.3 canary markers present (warnings allowed) | NOT VERIFIED | `checker-report.txt` |
+| `[agent].timeout_sec` is 28800 and footer matches | NOT VERIFIED | `task.toml`, `instruction.md` |
+| `[task] name` matches `terminal-bench/<slug>` | NOT VERIFIED | `task.toml` |
+| Task README has the four required headings | NOT VERIFIED | `README.md` |
 | Checker exit 0 on this tree | NOT VERIFIED | `checker-report.txt` |
 | Coverage has no hidden test and no ungraded sentence | NOT VERIFIED | `coverage.md` |
 | Oracle transcript reward `1.0` | NOT VERIFIED | `oracle.txt` |
@@ -21,4 +23,4 @@ review_status: NOT STARTED
 | No private evidence, credential, symlink, or `.git` in the task tree | NOT VERIFIED | directory listing |
 | Platform verdicts left blank | NOT VERIFIED | `complexity.md` platform block |
 
-`C-CANARY` and `C-TIMEOUT` start at `BLOCKED` because those conflicts are unresolved. A provisional choice does not change that status to `PASS`.
+`C-INTERNET` leftover contradictions stay recorded, not resolved. Canary missing/malformed is a warning, not a packaging blocker.

@@ -8,7 +8,7 @@
 - No leading or suggestive phrasing. The source’s examples are “please think step by step” and “you are an expert in xxx.”
 - No hints. The example tree’s comment on the instruction is “No hints.”
 - Absolute paths only. `/app/data.csv`, never `data.csv` or `./data.csv`. The source also gives `/app/solve.py` and `/app/report.json` as shapes.
-- No tidy `##` headings and no excessive length. Page 7 calls that shape “pure LLM synthesis without human review.” `C-HEADINGS` is compatible: “well-structured” in the rubric does not mean `##` headings.
+- No tidy `##` headings and no excessive length. Page 8 calls that shape “pure LLM synthesis without human review.” `C-HEADINGS` is compatible: “well-structured” in the rubric does not mean `##` headings.
 - One focused objective. Do not enumerate the steps the agent must follow. Do not prescribe tools.
 - No statement of the expected answer, the test internals, or the solution method.
 
@@ -31,7 +31,7 @@
 You have N seconds to complete this task. Do not cheat by using online solutions or hints specific to this task.
 ```
 
-The line is its own paragraph and the file has a single trailing newline. The curly quotes in the PDF wrap the sentence; they are not part of the line. `N` matches `[agent].timeout_sec` exactly, with no thousands separator. Which integer is allowed is `C-TIMEOUT` and is unresolved. The equality of the suffix and the field is not in conflict.
+The line is its own paragraph and the file has a single trailing newline. The curly quotes in the PDF wrap the sentence; they are not part of the line. `N` is `28800`, matching `[agent].timeout_sec`. The two Harbor canary HTML comments are lines 1 and 2, before any task text. They are not markdown headings.
 
 ## Consistency review
 

@@ -1,18 +1,20 @@
 # Requirements register
 
-Extracted from `Freelancers _ Thanos _ Guidelines.pdf` (26 pages).
+Extracted from `Thanos _ Guidelines _ Onboarding SOP v3.0.pdf` (32 pages).
 Each row is one requirement. Platform rule IDs come from the Stage 1 screenshots and are catalogued, not guessed.
 Obligation classes are defined in `00-source/HOW-TO-READ.md`. Conflicts are decided only in `00-source/CONFLICT-REGISTER.md`.
+Superseded / newly introduced / unchanged / internally contradictory / practice classes: `00-source/REQUIREMENT-CLASSES.md` and `00-source/INVENTORY.md`.
+Retired previous-PDF numbers: `00-source/HISTORICAL-PREVIOUS-PDF.md` (not an active source).
 
-Count: 331.
+Count: 335.
 
 | Obligation | Rows |
 | --- | --- |
-| mandatory | 138 |
+| mandatory | 142 |
 | conditional | 41 |
-| advisory | 10 |
-| platform | 123 |
-| unresolved | 14 |
+| advisory | 11 |
+| platform | 124 |
+| unresolved | 12 |
 | example | 5 |
 
 Regenerate with `python3 tools/build_register.py`.
@@ -38,7 +40,7 @@ Regenerate with `python3 tools/build_register.py`.
 - explained_in: 16-evidence-and-handoff/EVIDENCE.md
 - compliance_check: No Discord step is used. The evidence pack contains platform receipts rather than chat logs.
 - evidence: proposal-receipt.txt; stage1.txt
-- contradiction_or_rejection_risk: Following the legacy Discord path on pp. 20–21 misses the grant and blocks upload.
+- contradiction_or_rejection_risk: Following the legacy Discord path on pp. 26–27 misses the grant and blocks upload.
 - requirement: The whole workflow lives on one platform: submit the proposal there, read the verdict there, and upload the ZIP only against a grant.
 
 ## REQ-W-003
@@ -54,28 +56,28 @@ Regenerate with `python3 tools/build_register.py`.
 - requirement: There is no Discord step in this workflow.
 
 ## REQ-W-004
-- obligation: unresolved
+- obligation: mandatory
 - scope: task
 - stages: build,package
-- source: p.1 opening; p.2 step 4; p.13 §7
-- section: Opening / journey / checklist
-- explained_in: 00-source/CONFLICT-REGISTER.md
-- compliance_check: A provisional C-CANARY decision is in the decision log. No canary string was invented. The conflict stays open until a Stage 1 receipt shows whether a TB3.CANARY_* rule fired.
+- source: p.1 opening; p.3; p.8–9 §4.3
+- section: Canary markers
+- explained_in: 06-harbor-task/LAYOUT.md
+- compliance_check: Checked text files contain the two-line markers. tools/check_task.py warns if they are missing. No invented proposal-specific value. No canary_string upload field.
 - evidence: decision-log.md; checker-report.txt
-- contradiction_or_rejection_risk: C-CANARY. The opposite instruction is REQ-W-005. The Stage 1 UI still shows TB3.CANARY_MISSING, TB3.CANARY_FORMAT, and TB3.CANARY_ADVISORY.
-- requirement: Do not add canary comment lines to files, and do not look for a canary_string field at upload. Nothing issues one and nothing asks for one. Journey step 4: no canary lines. Checklist: no canary lines anywhere.
+- contradiction_or_rejection_risk: C-CANARY leftover: p.26–27 still mention canary_string and a Discord DM. p.8 includes GUID; p.21 omits it. Missing markers are advisory, not blocking.
+- requirement: Canary markers are required in TB4 inside the task files as described in Section 4.3. Two Harbor canary comment lines, GUID then proposal placeholder unless a proposal-specific value was issued. There is no canary_string field at upload.
 
 ## REQ-W-005
-- obligation: unresolved
+- obligation: advisory
 - scope: task
-- stages: build,package
-- source: p.6 §4; p.8 §4.3; p.15 intro; p.21 checklist; p.25 pipeline
-- section: Build / static intro / legacy checklist / acceptance
-- explained_in: 00-source/CONFLICT-REGISTER.md
-- compliance_check: Do not invent a canary. A provisional decision is recorded. This row stays open until a Stage 1 receipt shows whether TB3.CANARY_MISSING or TB3.CANARY_FORMAT fired. Section 4 of this PDF does not define a canary format.
-- evidence: decision-log.md; stage1.txt
-- contradiction_or_rejection_risk: C-CANARY. U-CANARY-FORMAT. Adding a homemade canary violates REQ-W-004. Omitting one may fail the UI rules if they are still enforced.
-- requirement: Conflicting instruction: build 'with your canary in hand'; example tree comment 'Canary on line 1'; 'Canary in every file (Section 4)'; static-check intro says checks catch a missing canary; legacy checklist requires a canary comment in every text file (instruction.md, task.toml, environment/Dockerfile, all of solution/ and tests/) and the canary_string field at upload; acceptance static checks include canary strings.
+- stages: build,package,stage1
+- source: p.3; p.9; p.21
+- section: Canary severity
+- explained_in: 10-checks-and-coverage/STATIC-CHECKS.md
+- compliance_check: A missing marker is archived as a warning, not treated as Stage 1 rejected.
+- evidence: checker-report.txt; stage1.txt
+- contradiction_or_rejection_risk: C-CANARY. Do not skip the markers because they are warnings.
+- requirement: The platform grades canary markers as a warning rather than a blocker. TB4.CANARY_MISSING, TB4.CANARY_FORMAT, and TB4.CANARY_ADVISORY are advisory.
 
 ## REQ-W-006
 - obligation: mandatory
@@ -87,7 +89,7 @@ Regenerate with `python3 tools/build_register.py`.
 - compliance_check: The author uses both companion sections, not only the narrative guide.
 - evidence: rubric-review.md; checker-report.txt
 - contradiction_or_rejection_risk: Skipping the rubric because static checks passed is explicitly the wrong split: static checks do not judge quality.
-- requirement: Keep the three-document set: this proposal guide, the Static Checks Reference, and the Rubric Review Reference. In this PDF they are pages 1–14, 15–16, and 17–19.
+- requirement: Keep the three-document set: this proposal guide, the Static Checks Reference, and the Rubric Review Reference. In SOP v3.0 they are approximately pages 1–18, 19–21, and 23–25.
 
 ## REQ-W-007
 - obligation: mandatory
@@ -170,20 +172,20 @@ Regenerate with `python3 tools/build_register.py`.
 - explained_in: 14-platform-review/ACCEPTANCE.md
 - compliance_check: acceptance.txt names QC and Super QC separately when they occur. Neither is marked done early.
 - evidence: acceptance.txt
-- contradiction_or_rejection_risk: U-SUPER-QC. C-LEGACY-CARDS. Stage 3 being deferred is not Super QC.
+- contradiction_or_rejection_risk: U-SUPER-QC. C-LEGACY-CARDS. Platform Stage 3 is qualitative acceptance, not Super QC.
 - requirement: Final review is QC review and then Super QC, a second expert layer.
 
 ## REQ-W-014
 - obligation: mandatory
 - scope: process
 - stages: all
-- source: p.2 §2
+- source: p.3 §2
 - section: The TB4 journey at a glance
 - explained_in: 16-evidence-and-handoff/EVIDENCE.md
 - compliance_check: Evidence appears in that order. A later artifact does not predate the grant it depends on.
 - evidence: decision-log.md; proposal-receipt.txt; stage1.txt; stage2.txt
 - contradiction_or_rejection_risk: Skipping step 5 spends a version. C-CANARY applies to step 4.
-- requirement: Follow the eight-step order: (1) proposal with title, category, subcategory, expert time, and markdown; (2) Proposal Review Bot plus duplicate and novelty checks; (3) ACTIVE grant only if accepted and not a duplicate, text frozen; (4) build locally with separate verifier and no canary lines; (5) self-test static checks, rubric, Oracle pass, NOP fail; (6) upload ZIP, G01–G06 and P04 as one job; (7) re-upload until the status reads PASSED STAGE 1; (8) Stage 2 rollouts on a frozen policy decide PASS or FAIL.
+- requirement: Follow the nine-step order: (1) proposal with title, category, subcategory, expert time, and markdown; (2) reviewer grades six criteria; (3) ACTIVE grant only if accepted and not a duplicate, text frozen; (4) build locally with separate verifier and canary markers in checked text files; (5) self-test static checks, rubric, Oracle pass, NOP fail; (6) upload ZIP, G01–G06 and P04 as one job; (7) re-upload until the status reads PASSED STAGE 1; (8) Stage 2 rollouts on a frozen policy decide PASS or FAIL; (9) Stage 3 qualitative review decides ACCEPTED, REJECTED, or COULD NOT COMPLETE.
 
 ## REQ-W-015
 - obligation: example
@@ -201,7 +203,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: process
 - stages: proposal
-- source: p.3 §3
+- source: p.4 §3
 - section: Step 1
 - explained_in: 04-proposal/PROPOSAL.md
 - compliance_check: No Harbor tree is built before the proposal is submitted.
@@ -213,7 +215,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: proposal
-- source: p.3 §3.1
+- source: p.4 §3.1
 - section: What the reviewer grades
 - explained_in: 04-proposal/PROPOSAL.md
 - compliance_check: The receipt shows a verdict per criterion and one overall verdict. Overall Accept is not claimed if a criterion is Reject.
@@ -225,7 +227,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: proposal
-- source: p.3 §3.1
+- source: p.4 §3.1
 - section: Verifiable
 - explained_in: 04-proposal/PROPOSAL.md
 - compliance_check: The proposal states a programmatic check. The later tests are deterministic and not an LLM judge.
@@ -237,7 +239,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: proposal,build
-- source: p.3 §3.1
+- source: p.4 §3.1
 - section: Well-specified
 - explained_in: 04-proposal/PROPOSAL.md
 - compliance_check: A second reading of the proposal and of instruction.md produces the same graded fields the tests assert.
@@ -249,7 +251,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: proposal,build
-- source: p.3 §3.1
+- source: p.4 §3.1
 - section: Solvable
 - explained_in: 03-difficulty-and-horizon/DESIGN.md
 - compliance_check: The reference solution exists and Oracle scores 1.0. The proposal argues existence before the grant.
@@ -261,7 +263,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: proposal,stage2
-- source: p.3 §3.1
+- source: p.4 §3.1
 - section: Difficult
 - explained_in: 03-difficulty-and-horizon/DESIGN.md
 - compliance_check: difficulty_explanation names the expertise. A few-days undergraduate shape is redesigned before proposal.
@@ -273,7 +275,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: proposal
-- source: p.3 §3.1
+- source: p.4 §3.1
 - section: Interesting
 - explained_in: 03-difficulty-and-horizon/DESIGN.md
 - compliance_check: The proposal names who does the work and why. Obscurity is not the difficulty claim.
@@ -285,7 +287,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: proposal,build
-- source: p.3 §3.1
+- source: p.4 §3.1
 - section: Outcome-verified
 - explained_in: 05-instruction/INSTRUCTION.md
 - compliance_check: The proposal and instruction.md do not list the steps or the required tool chain. Tests grade the artifact.
@@ -297,7 +299,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: proposal
-- source: p.3 §3.2; p.4 screenshot
+- source: p.4 §3.2; p.5 screenshot
 - section: Submission form
 - explained_in: 04-proposal/PROPOSAL.md
 - compliance_check: The submitted receipt shows all five populated.
@@ -309,7 +311,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: proposal
-- source: p.3 §3.2; p.4 screenshot
+- source: p.4 §3.2; p.5 screenshot
 - section: Title
 - explained_in: 04-proposal/PROPOSAL.md
 - compliance_check: The title and the proposal body name one task.
@@ -321,7 +323,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: proposal,build
-- source: p.3 §3.2
+- source: p.4 §3.2
 - section: Category
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: The value is exactly one of those seven strings in the form and in task.toml.
@@ -333,7 +335,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: proposal,build
-- source: p.3 §3.2
+- source: p.4 §3.2
 - section: Subcategory
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: Subcategory is on the receipt and in task.toml. A custom value has a written reason that no listed subcategory fit.
@@ -345,7 +347,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: proposal
-- source: p.3 §3.2; p.4 screenshot
+- source: p.4 §3.2; p.5 screenshot
 - section: Expert time
 - explained_in: 04-proposal/PROPOSAL.md
 - compliance_check: The form value is a build-time estimate. difficulty_explanation states that this is distinct from solve time.
@@ -357,7 +359,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: process
 - stages: proposal
-- source: p.3 §3.2; p.4 screenshot
+- source: p.4 §3.2; p.5 screenshot
 - section: Proposal markdown
 - explained_in: 04-proposal/PROPOSAL.md
 - compliance_check: The archived markdown matches the preview that was submitted. No local edit is described as a change to that revision.
@@ -369,19 +371,19 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: proposal
-- source: p.4 screenshot
+- source: p.5 screenshot
 - section: Form instruction
 - explained_in: 04-proposal/PROPOSAL.md
 - compliance_check: tools/check_proposal.py reports 2 or 3 paragraphs and no headings. The first paragraph states the goal and the graded output.
 - evidence: checker-report.txt; proposal.md
-- contradiction_or_rejection_risk: A heading outline can also trip the LLM-fingerprint rule on p.7.
+- contradiction_or_rejection_risk: A heading outline can also trip the LLM-fingerprint rule on p.8.
 - requirement: Two or three paragraphs is the target. State the goal up front, then everything the verifier will check — nothing left to guessing. Do not enumerate the steps the agent must follow; that reads as overspecification and costs the outcome-verified criterion.
 
 ## REQ-PR-016
 - obligation: mandatory
 - scope: task
 - stages: proposal
-- source: p.4 §3.3
+- source: p.5 §3.3
 - section: Length
 - explained_in: tools/check_proposal.py
 - compliance_check: tools/check_proposal.py character count is strictly less than 2000.
@@ -393,7 +395,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: proposal
-- source: p.4 §3.3
+- source: p.5 §3.3
 - section: Summary and objective
 - explained_in: 04-proposal/PROPOSAL.md
 - compliance_check: The proposal contains an absolute output path and a type.
@@ -405,7 +407,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: proposal
-- source: p.4 §3.3
+- source: p.5 §3.3
 - section: Environment and inputs
 - explained_in: 07-agent-environment/ENVIRONMENT.md
 - compliance_check: The proposal's inputs match environment/Dockerfile.
@@ -417,7 +419,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: proposal
-- source: p.4 §3.3
+- source: p.5 §3.3
 - section: Why it is hard
 - explained_in: 03-difficulty-and-horizon/GENUINE-COMPLEXITY.md
 - compliance_check: The proposal names the naive approach and the mechanical reason it fails. complexity.md names that approach and at least one more, each tied to an instruction sentence. Neither file says the task has passed a difficulty gate.
@@ -429,7 +431,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: proposal,build
-- source: p.4 §3.3
+- source: p.5 §3.3
 - section: Verification and grading
 - explained_in: 09-verifier/VERIFIER.md
 - compliance_check: The proposal's check count and method match tests/. No LLM judge is used.
@@ -441,19 +443,19 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: proposal
-- source: p.4 §3.3
+- source: p.5 §3.3
 - section: Real-world relevance and feasibility
 - explained_in: 03-difficulty-and-horizon/DESIGN.md
 - compliance_check: The proposal names the worker and the build-versus-existing status.
 - evidence: proposal.md
-- contradiction_or_rejection_risk: A demo or toy fails this row and the p.7 industrial-scenario rule.
+- contradiction_or_rejection_risk: A demo or toy fails this row and the p.8 industrial-scenario rule.
 - requirement: State who actually does this work and why it matters, and whether the data and environment already exist or must be built.
 
 ## REQ-PR-022
 - obligation: mandatory
 - scope: task
 - stages: proposal
-- source: p.4 §3.3
+- source: p.5 §3.3
 - section: Why it is distinct
 - explained_in: 04-proposal/PROPOSAL.md
 - compliance_check: The sentence names a concrete difference, not a synonym.
@@ -465,7 +467,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: advisory
 - scope: task
 - stages: proposal
-- source: p.4 §3.3 tip
+- source: p.5 §3.3 tip
 - section: Tip
 - explained_in: 04-proposal/PROPOSAL.md
 - compliance_check: Those three items are specific nouns and paths, not adjectives.
@@ -477,7 +479,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: process
 - stages: proposal
-- source: p.4–5 §3.4
+- source: p.6 §3.4
 - section: Verdict
 - explained_in: 04-proposal/PROPOSAL.md
 - compliance_check: The archived verdict uses those values.
@@ -489,7 +491,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: process
 - stages: proposal
-- source: p.5 §3.4
+- source: p.6 §3.4
 - section: Final analysis and problem statement
 - explained_in: 04-proposal/PROPOSAL.md
 - compliance_check: The evidence pack notes the comparison. A mismatch triggers a revision.
@@ -501,7 +503,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: process
 - stages: grant,package
-- source: p.5 §3.5; p.5 screenshot
+- source: p.6 §3.5; p.5 screenshot
 - section: Grant
 - explained_in: 14-platform-review/STAGE-1.md
 - compliance_check: The receipt says GRANT ACTIVE before packaging. The ZIP is tied to that revision.
@@ -513,7 +515,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: grant,build
-- source: p.5 §3.5
+- source: p.6 §3.5
 - section: Frozen proposal
 - explained_in: 04-proposal/PROPOSAL.md
 - compliance_check: The built instruction still implements the frozen text. A material change is a new proposal, not an edit.
@@ -525,7 +527,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: process
 - stages: grant
-- source: p.5 §3.5
+- source: p.6 §3.5
 - section: Suspend or revoke
 - explained_in: 04-proposal/PROPOSAL.md
 - compliance_check: If the grant is not ACTIVE, no ZIP is uploaded. The reason is archived if shown.
@@ -537,7 +539,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: process
 - stages: proposal
-- source: p.5 §3.6; p.6 screenshot
+- source: p.7 §3.6; p.6 screenshot
 - section: Revise
 - explained_in: 04-proposal/PROPOSAL.md
 - compliance_check: The new revision number is higher. The failed criterion is answered in the new text.
@@ -561,7 +563,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: unresolved
 - scope: platform
 - stages: proposal
-- source: p.20 troubleshooting
+- source: p.26 troubleshooting
 - section: Duplicate
 - explained_in: 00-source/UNRESOLVED.md
 - compliance_check: A duplicate block is answered with a substantive change. No similarity score is invented.
@@ -573,7 +575,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: proposal
-- source: p.20 troubleshooting
+- source: p.26 troubleshooting
 - section: Novelty
 - explained_in: 04-proposal/PROPOSAL.md
 - compliance_check: The distinctness sentence and the actual mechanism both change before resubmission.
@@ -602,14 +604,14 @@ Regenerate with `python3 tools/build_register.py`.
 - explained_in: 04-proposal/PROPOSAL.md
 - compliance_check: The proposal would survive that note. The heading 'Client-fit' is not added to the proposal.
 - evidence: proposal.md
-- contradiction_or_rejection_risk: This is observed reviewer practice, not a seventh named criterion. Interesting and the p.7 industrial rule still apply.
+- contradiction_or_rejection_risk: This is observed reviewer practice, not a seventh named criterion. Interesting and the p.8 industrial rule still apply.
 - requirement: Review examples include a Client-fit note: supported industrial purpose, not a toy, contest problem, or mathematical exercise, with inputs and deliverables that match the purpose.
 
 ## REQ-BD-001
 - obligation: mandatory
 - scope: task
 - stages: build
-- source: p.6 §4
+- source: p.7 §4
 - section: Separate verifier
 - explained_in: 06-harbor-task/LAYOUT.md
 - compliance_check: environment/Dockerfile does not copy tests/ or solution/. Ground truth is only in the verifier image. environment_mode is separate.
@@ -621,7 +623,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: advisory
 - scope: task
 - stages: build
-- source: p.6 §4.1
+- source: p.8 §4.1
 - section: More than five files
 - explained_in: 06-harbor-task/LAYOUT.md
 - compliance_check: The tree has the fixtures and verifier files the task actually needs, not empty extras.
@@ -633,7 +635,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: example
 - scope: task
 - stages: build
-- source: pp. 6–7 §4.1
+- source: pp. 7–8 §4.1
 - section: Example tree
 - explained_in: 06-harbor-task/LAYOUT.md
 - compliance_check: New tasks copy the pattern, not the DFIR filenames, unless the task is that task.
@@ -645,7 +647,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: advisory
 - scope: task
 - stages: build
-- source: p.7 §4.1
+- source: p.8 §4.1
 - section: Solution split
 - explained_in: 09-verifier/VERIFIER.md
 - compliance_check: If the reference logic exceeds about 20 lines, it is not all inline in solve.sh.
@@ -657,7 +659,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: build
-- source: p.7 §4.1
+- source: p.8 §4.1
 - section: Agent fixtures
 - explained_in: 07-agent-environment/ENVIRONMENT.md
 - compliance_check: Every input the instruction names is copied by the agent Dockerfile and is not only on the host.
@@ -669,7 +671,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: build
-- source: p.7 §4.2
+- source: p.8 §4.2
 - section: No AI fingerprints
 - explained_in: 05-instruction/INSTRUCTION.md
 - compliance_check: instruction.md has no markdown headings and is not padded. A human has read it.
@@ -681,7 +683,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: build
-- source: p.7 §4.2
+- source: p.8 §4.2
 - section: Instruction length
 - explained_in: 05-instruction/INSTRUCTION.md
 - compliance_check: tools/check_task.py counts content.split() on the whole instruction file at or under 1500. The draft aims near 267 unless the schema truly needs more.
@@ -693,7 +695,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: build
-- source: p.7 §4.2
+- source: p.8 §4.2
 - section: No steering
 - explained_in: 05-instruction/INSTRUCTION.md
 - compliance_check: Those phrases and close variants are absent.
@@ -705,7 +707,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: build
-- source: p.7 §4.2; p.8 §4.3
+- source: p.8 §4.2; p.9 §4.3
 - section: Absolute paths
 - explained_in: 05-instruction/INSTRUCTION.md
 - compliance_check: check-task-absolute-path and the local checker find no relative path tokens in instruction.md.
@@ -717,7 +719,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: proposal,build
-- source: p.7 §4.2
+- source: p.8 §4.2
 - section: Industrial scenario
 - explained_in: 03-difficulty-and-horizon/DESIGN.md
 - compliance_check: The scenario is a real engineering job. Contest and olympiad premises are rejected before proposal.
@@ -729,7 +731,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: proposal
-- source: p.7 §4.2
+- source: p.8 §4.2
 - section: Not exam-style
 - explained_in: 03-difficulty-and-horizon/DESIGN.md
 - compliance_check: The difficulty explanation is a real failure mode or engineering constraint, not a constructed riddle.
@@ -741,7 +743,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: batch
 - stages: batch,build
-- source: p.7 §4.2
+- source: p.8 §4.2
 - section: Align with TB3/TB4
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: The task uses this taxonomy, the instruction rules, and the Stage 2 numeric targets.
@@ -753,7 +755,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: build
-- source: p.7 §4.3
+- source: p.9 §4.3
 - section: Separate verifier declaration
 - explained_in: 06-harbor-task/METADATA.md
 - compliance_check: check-separate-verifier. In TOML, artifacts is written before any [table] header so it stays top-level.
@@ -765,7 +767,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: build
-- source: p.7 §4.3
+- source: p.9 §4.3
 - section: No runtime installs
 - explained_in: 07-agent-environment/ENVIRONMENT.md
 - compliance_check: tests/test.sh contains none of those install forms. The image build contains the pins.
@@ -777,7 +779,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: build
-- source: p.7 §4.3
+- source: p.9 §4.3
 - section: Clean agent image
 - explained_in: 07-agent-environment/ENVIRONMENT.md
 - compliance_check: check-dockerfile-references, extended to the whole tests/ and solution/ trees as the prose requires.
@@ -789,7 +791,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: build
-- source: p.7 §4.3
+- source: p.9 §4.3
 - section: Pins and nproc
 - explained_in: 07-agent-environment/ENVIRONMENT.md
 - compliance_check: check-pip-pinning, check-dockerfile-sanity, and check-nproc.
@@ -801,7 +803,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: build
-- source: p.7 §4.3; p.16 check-instruction-suffix
+- source: p.9 §4.3; p.20 check-instruction-suffix
 - section: Instruction suffix
 - explained_in: 05-instruction/INSTRUCTION.md
 - compliance_check: The last paragraph equals that sentence for the integer timeout, and the file ends with exactly one newline.
@@ -813,7 +815,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: build
-- source: p.7 §4.3
+- source: p.9 §4.3
 - section: Behavior tests
 - explained_in: 09-verifier/VERIFIER.md
 - compliance_check: Tests run or parse the artifact. They do not grep the agent's source for keywords.
@@ -825,7 +827,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: build,self-test
-- source: p.8 §4.3
+- source: p.9 §4.3
 - section: CTRF and reward
 - explained_in: 09-verifier/VERIFIER.md
 - compliance_check: The command is recorded. The reward file is written on both pass and fail. See REQ-BD-020 for the 1.0 / 0.0 literal.
@@ -837,7 +839,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: unresolved
 - scope: task
 - stages: self-test,stage1
-- source: p.8 §4.3–4.4; p.9 G05
+- source: p.9 §4.3–4.4; p.11 G05
 - section: Reward literal
 - explained_in: 00-source/CONFLICT-REGISTER.md
 - compliance_check: Local Oracle reward is 1.0 and local NOP reward is 0.0 because section 4.4 states those expected results. That does not decide whether a partial NOP reward fails G05. See C-REWARD-LITERAL.
@@ -849,7 +851,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: build
-- source: p.8 §4.3; p.15 check-task-fields
+- source: p.9 §4.3; p.19 check-task-fields
 - section: Metadata
 - explained_in: 06-harbor-task/METADATA.md
 - compliance_check: check-task-fields. None of those values is empty or a placeholder.
@@ -861,7 +863,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: self-test
-- source: p.8 §4.4
+- source: p.9 §4.4
 - section: Oracle
 - explained_in: 11-validation/VALIDATION.md
 - compliance_check: The command output and reward token are archived before upload.
@@ -873,7 +875,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: self-test
-- source: p.8 §4.4
+- source: p.9 §4.4
 - section: NOP
 - explained_in: 11-validation/VALIDATION.md
 - compliance_check: The command output shows failure and reward 0.0.
@@ -885,7 +887,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: process
 - stages: self-test
-- source: p.8 §4.5
+- source: p.10 §4.6
 - section: Local static and rubric
 - explained_in: 11-validation/VALIDATION.md
 - compliance_check: Both reports are clean on the tree that is zipped.
@@ -897,7 +899,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: self-test
-- source: p.8 §4.5; p.14 checklist
+- source: p.10 §4.6; p.18 checklist
 - section: Dry run
 - explained_in: 03-difficulty-and-horizon/DESIGN.md
 - compliance_check: dry-run.md records the model and those three judgments.
@@ -909,7 +911,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: process
 - stages: self-test
-- source: p.15 opening
+- source: p.19 opening
 - section: Static checks reference
 - explained_in: 10-checks-and-coverage/STATIC-CHECKS.md
 - compliance_check: The static report is separate from the rubric report.
@@ -921,7 +923,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: build,self-test,stage1
-- source: p.15
+- source: p.19
 - section: check-dockerfile-references
 - explained_in: 10-checks-and-coverage/STATIC-CHECKS.md
 - compliance_check: Local preflight plus the platform static runner. The local script approximates check-dockerfile-references.
@@ -933,7 +935,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: build,self-test,stage1
-- source: p.15
+- source: p.19
 - section: check-dockerfile-sanity
 - explained_in: 10-checks-and-coverage/STATIC-CHECKS.md
 - compliance_check: Local preflight plus the platform static runner. The local script approximates check-dockerfile-sanity.
@@ -945,7 +947,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: build,self-test,stage1
-- source: p.15
+- source: p.19
 - section: check-dockerfile-platform
 - explained_in: 10-checks-and-coverage/STATIC-CHECKS.md
 - compliance_check: Local preflight plus the platform static runner. The local script approximates check-dockerfile-platform.
@@ -957,7 +959,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: build,self-test,stage1
-- source: p.15
+- source: p.19
 - section: check-task-absolute-path
 - explained_in: 10-checks-and-coverage/STATIC-CHECKS.md
 - compliance_check: Local preflight plus the platform static runner. The local script approximates check-task-absolute-path.
@@ -969,7 +971,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: build,self-test,stage1
-- source: p.15
+- source: p.19
 - section: check-test-file-references
 - explained_in: 10-checks-and-coverage/STATIC-CHECKS.md
 - compliance_check: Local preflight plus the platform static runner. The local script approximates check-test-file-references.
@@ -981,7 +983,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: build,self-test,stage1
-- source: p.15
+- source: p.19
 - section: check-test-sh-sanity
 - explained_in: 10-checks-and-coverage/STATIC-CHECKS.md
 - compliance_check: Local preflight plus the platform static runner. The local script approximates check-test-sh-sanity.
@@ -993,7 +995,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: build,self-test,stage1
-- source: p.15
+- source: p.19
 - section: check-task-fields
 - explained_in: 10-checks-and-coverage/STATIC-CHECKS.md
 - compliance_check: Local preflight plus the platform static runner. The local script approximates check-task-fields.
@@ -1005,19 +1007,19 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: build,self-test,stage1
-- source: p.16
+- source: p.20
 - section: check-task-timeout
 - explained_in: 10-checks-and-coverage/STATIC-CHECKS.md
 - compliance_check: Local preflight plus the platform static runner. The local script approximates check-task-timeout.
 - evidence: checker-report.txt; static-checks.txt
-- contradiction_or_rejection_risk: C-TIMEOUT. The acceptance page says an 8-hour rollout limit, which is 28800s and would fail this cap if copied into timeout_sec.
-- requirement: [agent] and [verifier] timeout_sec are capped at 18000s (5 hours), leaving headroom under the CI runner's 6-hour job limit.
+- contradiction_or_rejection_risk: C-TIMEOUT leftover 6-hour CI sentence. Do not copy 28800 onto [verifier].timeout_sec automatically.
+- requirement: [agent].timeout_sec is exactly 28800. [verifier] timeout_sec is a positive integer capped at 28800s (8 hours). The same sentence still mentions headroom under a 6-hour CI job (C-TIMEOUT leftover).
 
 ## REQ-SC-check-instruction-suffix
 - obligation: mandatory
 - scope: task
 - stages: build,self-test,stage1
-- source: p.16
+- source: p.20
 - section: check-instruction-suffix
 - explained_in: 10-checks-and-coverage/STATIC-CHECKS.md
 - compliance_check: Local preflight plus the platform static runner. The local script approximates check-instruction-suffix.
@@ -1029,7 +1031,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: task
 - stages: build,self-test,stage1
-- source: p.16
+- source: p.20
 - section: check-gpu-types
 - explained_in: 10-checks-and-coverage/STATIC-CHECKS.md
 - compliance_check: Local preflight plus the platform static runner. The local script approximates check-gpu-types.
@@ -1041,7 +1043,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: build,self-test,stage1
-- source: p.16
+- source: p.20
 - section: check-task-slug
 - explained_in: 10-checks-and-coverage/STATIC-CHECKS.md
 - compliance_check: Local preflight plus the platform static runner. The local script approximates check-task-slug.
@@ -1053,7 +1055,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: build,self-test,stage1
-- source: p.16
+- source: p.20
 - section: check-allow-internet
 - explained_in: 10-checks-and-coverage/STATIC-CHECKS.md
 - compliance_check: Local preflight plus the platform static runner. The local script approximates check-allow-internet.
@@ -1065,7 +1067,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: build,self-test,stage1
-- source: p.16
+- source: p.20
 - section: check-separate-verifier
 - explained_in: 10-checks-and-coverage/STATIC-CHECKS.md
 - compliance_check: Local preflight plus the platform static runner. The local script approximates check-separate-verifier.
@@ -1077,7 +1079,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: build,self-test,stage1
-- source: p.16
+- source: p.20
 - section: check-trial-network-fetch
 - explained_in: 10-checks-and-coverage/STATIC-CHECKS.md
 - compliance_check: Local preflight plus the platform static runner. The local script approximates check-trial-network-fetch.
@@ -1089,7 +1091,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: build,self-test,stage1
-- source: p.16
+- source: p.20
 - section: check-pip-pinning
 - explained_in: 10-checks-and-coverage/STATIC-CHECKS.md
 - compliance_check: Local preflight plus the platform static runner. The local script approximates check-pip-pinning.
@@ -1101,7 +1103,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: build,self-test,stage1
-- source: p.16
+- source: p.20
 - section: check-nproc
 - explained_in: 10-checks-and-coverage/STATIC-CHECKS.md
 - compliance_check: Local preflight plus the platform static runner. The local script approximates check-nproc.
@@ -1113,7 +1115,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: build,self-test,stage1
-- source: p.16
+- source: p.20
 - section: check-ai-prompt-sanitization
 - explained_in: 10-checks-and-coverage/STATIC-CHECKS.md
 - compliance_check: Local preflight plus the platform static runner. The local script approximates check-ai-prompt-sanitization.
@@ -1121,11 +1123,35 @@ Regenerate with `python3 tools/build_register.py`.
 - contradiction_or_rejection_risk: None beyond a failed upload.
 - requirement: AI prompts do not leak the task solution or hidden data to the model.
 
+## REQ-SC-check-task-readme
+- obligation: mandatory
+- scope: task
+- stages: build,self-test,stage1
+- source: p.2 #6; pp. 20–21
+- section: README headings
+- explained_in: 06-harbor-task/LAYOUT.md
+- compliance_check: tools/check_task.py fails if a heading is missing or misspelled.
+- evidence: checker-report.txt; README.md
+- contradiction_or_rejection_risk: Newly introduced in SOP v3.0. Do not apply this check to tb4-authoring-system/README.md.
+- requirement: Task README.md must contain the exact headings ## Difficulty explanation, ## Solution explanation, ## Verification explanation, and ## Relevant experience. Missing headings are blocking. This is the task README, not the authoring-system root README.
+
+## REQ-SC-check-publication-name
+- obligation: mandatory
+- scope: task
+- stages: build,package,stage1
+- source: p.2 #10–11
+- section: Publication name and slug
+- explained_in: 06-harbor-task/METADATA.md
+- compliance_check: tools/check_task.py checks the TOML name against the directory slug. tools/package_task.py --layout wrapped|flat.
+- evidence: task.toml; sha256.txt
+- contradiction_or_rejection_risk: Newly introduced as a blocking change-table row in SOP v3.0.
+- requirement: [task] name = "terminal-bench/<slug>". The slug has at most three hyphen-separated components. A wrapping task directory must match the slug. Flat ZIPs are allowed.
+
 ## REQ-BD-026
 - obligation: mandatory
 - scope: task
 - stages: build,self-test
-- source: pp. 6–7 example; p.15 check-dockerfile-references
+- source: pp. 7–8 example; p.19 check-dockerfile-references
 - section: Oracle entry point
 - explained_in: 09-verifier/VERIFIER.md
 - compliance_check: solution/solve.sh exists, is not copied into the agent image, and is what the local oracle run executes.
@@ -1137,19 +1163,19 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: unresolved
 - scope: account
 - stages: package
-- source: p.16 closing
+- source: p.20 closing
 - section: Static checks close
 - explained_in: 00-source/CONFLICT-REGISTER.md
-- compliance_check: Do not rely on this sentence or on the table value 7. Follow C-REUPLOADS.
+- compliance_check: Workflow uses the table value 7. Flag this leftover sentence. Do not apply 3 as the budget.
 - evidence: decision-log.md
-- contradiction_or_rejection_risk: C-REUPLOADS. The limits table says 7.
-- requirement: Fixing a static-check failure after upload costs one of your three reuploads.
+- contradiction_or_rejection_risk: C-REUPLOADS.
+- requirement: Leftover sentence: fixing a static-check failure after upload costs one of your three reuploads. The limits table and nearby prose on p.26 say 7.
 
 ## REQ-RB-01
 - obligation: mandatory
 - scope: task
 - stages: self-test,acceptance
-- source: pp. 17–19
+- source: pp. 23–25
 - section: Group A — Deterministic verification
 - explained_in: 10-checks-and-coverage/RUBRIC.md
 - compliance_check: Local rubric review records PASS with a justification tied to a file. Platform quality review, when it runs, agrees.
@@ -1161,7 +1187,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: self-test,acceptance
-- source: pp. 17–19
+- source: pp. 23–25
 - section: Group A — Outcome-based grading
 - explained_in: 10-checks-and-coverage/RUBRIC.md
 - compliance_check: Local rubric review records PASS with a justification tied to a file. Platform quality review, when it runs, agrees.
@@ -1173,7 +1199,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: self-test,acceptance
-- source: pp. 17–19
+- source: pp. 23–25
 - section: Group A — Frozen ground truth
 - explained_in: 10-checks-and-coverage/RUBRIC.md
 - compliance_check: Local rubric review records PASS with a justification tied to a file. Platform quality review, when it runs, agrees.
@@ -1185,7 +1211,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: self-test,acceptance
-- source: pp. 17–19
+- source: pp. 23–25
 - section: Group A — Complete coverage
 - explained_in: 10-checks-and-coverage/RUBRIC.md
 - compliance_check: Local rubric review records PASS with a justification tied to a file. Platform quality review, when it runs, agrees.
@@ -1197,7 +1223,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: self-test,acceptance
-- source: pp. 17–19
+- source: pp. 23–25
 - section: Group A — Correct expected values
 - explained_in: 10-checks-and-coverage/RUBRIC.md
 - compliance_check: Local rubric review records PASS with a justification tied to a file. Platform quality review, when it runs, agrees.
@@ -1209,7 +1235,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: self-test,acceptance
-- source: pp. 17–19
+- source: pp. 23–25
 - section: Group A — Strict failure on no-op
 - explained_in: 10-checks-and-coverage/RUBRIC.md
 - compliance_check: Local rubric review records PASS with a justification tied to a file. Platform quality review, when it runs, agrees.
@@ -1221,7 +1247,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: self-test,acceptance
-- source: pp. 17–19
+- source: pp. 23–25
 - section: Group B — Reference solution exists
 - explained_in: 10-checks-and-coverage/RUBRIC.md
 - compliance_check: Local rubric review records PASS with a justification tied to a file. Platform quality review, when it runs, agrees.
@@ -1233,7 +1259,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: self-test,acceptance
-- source: pp. 17–19
+- source: pp. 23–25
 - section: Group B — Solvable from instruction alone
 - explained_in: 10-checks-and-coverage/RUBRIC.md
 - compliance_check: Local rubric review records PASS with a justification tied to a file. Platform quality review, when it runs, agrees.
@@ -1245,7 +1271,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: self-test,acceptance
-- source: pp. 17–19
+- source: pp. 23–25
 - section: Group B — Environment is self-contained
 - explained_in: 10-checks-and-coverage/RUBRIC.md
 - compliance_check: Local rubric review records PASS with a justification tied to a file. Platform quality review, when it runs, agrees.
@@ -1257,7 +1283,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: self-test,acceptance
-- source: pp. 17–19
+- source: pp. 23–25
 - section: Group B — Achievable in the time budget
 - explained_in: 10-checks-and-coverage/RUBRIC.md
 - compliance_check: Local rubric review records PASS with a justification tied to a file. Platform quality review, when it runs, agrees.
@@ -1269,7 +1295,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: self-test,acceptance
-- source: pp. 17–19
+- source: pp. 23–25
 - section: Group B — No ambiguity in the goal
 - explained_in: 10-checks-and-coverage/RUBRIC.md
 - compliance_check: Local rubric review records PASS with a justification tied to a file. Platform quality review, when it runs, agrees.
@@ -1281,7 +1307,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: self-test,acceptance
-- source: pp. 17–19
+- source: pp. 23–25
 - section: Group B — Output schema fully specified
 - explained_in: 10-checks-and-coverage/RUBRIC.md
 - compliance_check: Local rubric review records PASS with a justification tied to a file. Platform quality review, when it runs, agrees.
@@ -1293,7 +1319,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: self-test,acceptance
-- source: pp. 17–19
+- source: pp. 23–25
 - section: Group C — Genuinely difficult
 - explained_in: 10-checks-and-coverage/RUBRIC.md
 - compliance_check: Local rubric review records PASS with a justification tied to a file. Platform quality review, when it runs, agrees.
@@ -1305,7 +1331,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: self-test,acceptance
-- source: pp. 17–19
+- source: pp. 23–25
 - section: Group C — Non-trivial (NOP fails)
 - explained_in: 10-checks-and-coverage/RUBRIC.md
 - compliance_check: Local rubric review records PASS with a justification tied to a file. Platform quality review, when it runs, agrees.
@@ -1317,7 +1343,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: self-test,acceptance
-- source: pp. 17–19
+- source: pp. 23–25
 - section: Group C — Difficulty is legitimate
 - explained_in: 10-checks-and-coverage/RUBRIC.md
 - compliance_check: Local rubric review records PASS with a justification tied to a file. Platform quality review, when it runs, agrees.
@@ -1329,7 +1355,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: self-test,acceptance
-- source: pp. 17–19
+- source: pp. 23–25
 - section: Group C — Resistant to reward hacking
 - explained_in: 10-checks-and-coverage/RUBRIC.md
 - compliance_check: Local rubric review records PASS with a justification tied to a file. Platform quality review, when it runs, agrees.
@@ -1341,7 +1367,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: self-test,acceptance
-- source: pp. 17–19
+- source: pp. 23–25
 - section: Group C — Answer not leaked
 - explained_in: 10-checks-and-coverage/RUBRIC.md
 - compliance_check: Local rubric review records PASS with a justification tied to a file. Platform quality review, when it runs, agrees.
@@ -1353,7 +1379,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: self-test,acceptance
-- source: pp. 17–19
+- source: pp. 23–25
 - section: Group C — No shortcut via internet
 - explained_in: 10-checks-and-coverage/RUBRIC.md
 - compliance_check: Local rubric review records PASS with a justification tied to a file. Platform quality review, when it runs, agrees.
@@ -1365,7 +1391,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: self-test,acceptance
-- source: pp. 17–19
+- source: pp. 23–25
 - section: Group D — Clear and well-written
 - explained_in: 10-checks-and-coverage/RUBRIC.md
 - compliance_check: Local rubric review records PASS with a justification tied to a file. Platform quality review, when it runs, agrees.
@@ -1377,7 +1403,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: self-test,acceptance
-- source: pp. 17–19
+- source: pp. 23–25
 - section: Group D — No hidden hints or leakage
 - explained_in: 10-checks-and-coverage/RUBRIC.md
 - compliance_check: Local rubric review records PASS with a justification tied to a file. Platform quality review, when it runs, agrees.
@@ -1389,7 +1415,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: self-test,acceptance
-- source: pp. 17–19
+- source: pp. 23–25
 - section: Group D — Absolute paths and concrete I/O
 - explained_in: 10-checks-and-coverage/RUBRIC.md
 - compliance_check: Local rubric review records PASS with a justification tied to a file. Platform quality review, when it runs, agrees.
@@ -1401,7 +1427,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: self-test,acceptance
-- source: pp. 17–19
+- source: pp. 23–25
 - section: Group D — Required suffix present
 - explained_in: 10-checks-and-coverage/RUBRIC.md
 - compliance_check: Local rubric review records PASS with a justification tied to a file. Platform quality review, when it runs, agrees.
@@ -1413,7 +1439,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: self-test,acceptance
-- source: pp. 17–19
+- source: pp. 23–25
 - section: Group D — Self-consistent with tests
 - explained_in: 10-checks-and-coverage/RUBRIC.md
 - compliance_check: Local rubric review records PASS with a justification tied to a file. Platform quality review, when it runs, agrees.
@@ -1425,7 +1451,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: self-test,acceptance
-- source: pp. 17–19
+- source: pp. 23–25
 - section: Group D — Appropriately scoped
 - explained_in: 10-checks-and-coverage/RUBRIC.md
 - compliance_check: Local rubric review records PASS with a justification tied to a file. Platform quality review, when it runs, agrees.
@@ -1437,7 +1463,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: self-test,acceptance
-- source: pp. 17–19
+- source: pp. 23–25
 - section: Group E — Separate verifier configured
 - explained_in: 10-checks-and-coverage/RUBRIC.md
 - compliance_check: Local rubric review records PASS with a justification tied to a file. Platform quality review, when it runs, agrees.
@@ -1449,7 +1475,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: self-test,acceptance
-- source: pp. 17–19
+- source: pp. 23–25
 - section: Group E — Dependencies pinned and baked
 - explained_in: 10-checks-and-coverage/RUBRIC.md
 - compliance_check: Local rubric review records PASS with a justification tied to a file. Platform quality review, when it runs, agrees.
@@ -1461,7 +1487,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: self-test,acceptance
-- source: pp. 17–19
+- source: pp. 23–25
 - section: Group E — Sensible resources
 - explained_in: 10-checks-and-coverage/RUBRIC.md
 - compliance_check: Local rubric review records PASS with a justification tied to a file. Platform quality review, when it runs, agrees.
@@ -1473,7 +1499,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: self-test,acceptance
-- source: pp. 17–19
+- source: pp. 23–25
 - section: Group E — Reproducible build
 - explained_in: 10-checks-and-coverage/RUBRIC.md
 - compliance_check: Local rubric review records PASS with a justification tied to a file. Platform quality review, when it runs, agrees.
@@ -1485,7 +1511,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: self-test,acceptance
-- source: pp. 17–19
+- source: pp. 23–25
 - section: Group E — Real-world relevance
 - explained_in: 10-checks-and-coverage/RUBRIC.md
 - compliance_check: Local rubric review records PASS with a justification tied to a file. Platform quality review, when it runs, agrees.
@@ -1497,7 +1523,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: self-test,acceptance
-- source: pp. 17–19
+- source: pp. 23–25
 - section: Group E — Correct and complete metadata
 - explained_in: 10-checks-and-coverage/RUBRIC.md
 - compliance_check: Local rubric review records PASS with a justification tied to a file. Platform quality review, when it runs, agrees.
@@ -1509,19 +1535,19 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: process
 - stages: self-test
-- source: p.19 closing
+- source: p.25 closing
 - section: How to use the rubric locally
 - explained_in: 10-checks-and-coverage/RUBRIC.md
 - compliance_check: The rubric report has no unexplained FAIL and predates the ZIP.
 - evidence: rubric-review.md
 - contradiction_or_rejection_risk: C-REUPLOADS. C-NINE-DIMENSIONS. There are 30 criteria here, not 9 named dimensions.
-- requirement: Run the rubric review with a free / open-source LLM before uploading. Read each FAIL with its justification, fix the underlying issue, and re-run. The page says arriving already passing protects your 3 reuploads.
+- requirement: Run the rubric review with a free / open-source LLM before uploading. Read each FAIL with its justification, fix the underlying issue, and re-run. The page says arriving already passing protects your 7 reuploads.
 
 ## REQ-G-001
 - obligation: platform
 - scope: platform
 - stages: package,stage1
-- source: p.8 §5; p.5 screenshot
+- source: p.10 §5; p.5 screenshot
 - section: Upload
 - explained_in: 14-platform-review/STAGE-1.md
 - compliance_check: The archived SHA-256 matches the uploaded bytes. Stage 1 starts on that generation.
@@ -1533,7 +1559,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: p.8 §5
+- source: p.10 §5
 - section: Stage 1 job
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: The event log shows that order. The author does not mark individual gates passed.
@@ -1545,7 +1571,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: p.9 §5.1
+- source: p.10–11 §5.1
 - section: I01
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: The receipt shows the bound hash.
@@ -1557,19 +1583,19 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: task
 - stages: package,stage1
-- source: p.9 §5.1
+- source: p.10–11 §5.1
 - section: G01
 - explained_in: 14-platform-review/STAGE-1.md
-- compliance_check: The ZIP has one top-level directory, no symlinks, no absolute member names, and is not encrypted.
+- compliance_check: The ZIP has a single candidate root: either a wrapping slug directory or a flat Harbor tree. No symlinks, no absolute member names, not encrypted.
 - evidence: sha256.txt; stage1.txt
-- contradiction_or_rejection_risk: U-ZIP-ROOT. The exact top-level shape is unspecified beyond a single candidate root. The packager's single top-level directory is provisional.
+- contradiction_or_rejection_risk: U-ZIP-ROOT. SOP v3.0 allows wrapping or a flat ZIP. package_task.py --layout wrapped|flat.
 - requirement: G01 Archive safety: exact ZIP inventory, safe extract, and a single candidate root. It catches path traversal, absolute paths, symlinks, encrypted members, CRC mismatches, archive bombs, and multiple or zero task roots.
 
 ## REQ-G-005
 - obligation: platform
 - scope: task
 - stages: stage1
-- source: p.9 §5.1
+- source: p.10–11 §5.1
 - section: G02
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: The layout matches the required tree and task.toml. The Harbor version is recorded when known.
@@ -1581,7 +1607,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: task
 - stages: stage1
-- source: p.9 §5.1
+- source: p.10–11 §5.1
 - section: G03
 - explained_in: 07-agent-environment/ENVIRONMENT.md
 - compliance_check: No secrets, no privileged or host-network compose, no verifier fetch, no tests copied into the agent image.
@@ -1593,7 +1619,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: task
 - stages: stage1
-- source: p.9 §5.1
+- source: p.10–11 §5.1
 - section: G04
 - explained_in: 07-agent-environment/ENVIRONMENT.md
 - compliance_check: A local image build succeeds from a clean context. The declared accelerator exists in the allowed profile.
@@ -1605,7 +1631,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: task
 - stages: stage1
-- source: p.9 §5.1
+- source: p.10–11 §5.1
 - section: G05
 - explained_in: 09-verifier/VERIFIER.md
 - compliance_check: Local Oracle shows reward 1.0 and local NOP shows reward 0.0, which is what section 4.4 requires of those commands. Whether a partial NOP reward fails Stage 1 is C-REWARD-LITERAL and is unresolved.
@@ -1617,7 +1643,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: task
 - stages: stage1
-- source: p.9 §5.1
+- source: p.10–11 §5.1
 - section: G06
 - explained_in: 10-checks-and-coverage/STATIC-CHECKS.md
 - compliance_check: The static-check table is clean. G06 is not marked passed from the local script alone.
@@ -1629,7 +1655,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: p.9 §5.1
+- source: p.10–11 §5.1
 - section: P04
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: P04 is read only after G01–G06. NOT_REACHED is traced to the earlier gate.
@@ -1641,7 +1667,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: platform
 - stages: stage1
-- source: p.9 §5.1
+- source: p.10–11 §5.1
 - section: Severity model
 - explained_in: 00-source/HOW-TO-READ.md
 - compliance_check: A warning is archived and not treated as PASSED failing. A REQUIRED id is fixed or retried according to the outcome class.
@@ -1653,7 +1679,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: p.9–10 §5.2
+- source: p.11 §5.2
 - section: Outcomes
 - explained_in: 14-platform-review/STAGE-1.md
 - compliance_check: The archived outcome is one of those three strings, plus the blocking rule when present.
@@ -1665,7 +1691,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: p.10 §5.2
+- source: p.11 §5.2
 - section: Named examples
 - explained_in: 14-platform-review/STAGE-1.md
 - compliance_check: Those ids are classified with the prose, not rewritten by habit.
@@ -1677,7 +1703,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: process
 - stages: stage1
-- source: p.11 §5.3
+- source: p.13 §5.3
 - section: Re-upload
 - explained_in: 14-platform-review/STAGE-1.md
 - compliance_check: The passing Stage 1 receipt is for one SHA-256, and the local Oracle/NOP for that tree predate it.
@@ -1689,19 +1715,19 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: example
 - scope: platform
 - stages: stage1
-- source: p.10 screenshot
+- source: p.12 screenshot
 - section: Clean Stage 1 illustration
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: These numbers are an illustration of one run, not quotas.
 - evidence: stage1.txt
 - contradiction_or_rejection_risk: Do not pad the task until a local counter reads 94.
-- requirement: The clean screenshot shows READY_FOR_STAGE2, 6 gates passed, 94 rules passed, 2 warnings, 5 artifacts bound, elapsed 1:12, and Stage 3 Qualitative checks DEFERRED.
+- requirement: A clean Stage 1 illustration shows READY_FOR_STAGE2 after all gates passed. Treat screenshot numbers as an example, not quotas.
 
 ## REQ-S2-001
 - obligation: platform
 - scope: platform
 - stages: stage2
-- source: p.12 §6
+- source: p.14 §6
 - section: Stage 2 flow
 - explained_in: 14-platform-review/STAGE-2.md
 - compliance_check: The author does not mark Stage 2 passed while the status is waiting or indeterminate.
@@ -1713,7 +1739,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage2
-- source: p.12 §6.1; p.13 screenshot
+- source: p.14 §6.1; p.15 screenshot
 - section: Eight rollouts
 - explained_in: 14-platform-review/STAGE-2.md
 - compliance_check: The receipt shows 8 of 8 reconciled on the frozen policy. The author does not set effort or K.
@@ -1725,31 +1751,31 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: stage2
-- source: p.12 §6.2; p.13 screenshot
+- source: p.14 §6.2
 - section: difficulty predicate
 - explained_in: 03-difficulty-and-horizon/DESIGN.md
-- compliance_check: The observed value on the passing run is ≤ 2.
+- compliance_check: The observed value on the passing run is ≤ 4.
 - evidence: stage2.txt
-- contradiction_or_rejection_risk: C-DIFFICULTY is unresolved. Do not treat ≤2 as the acceptance pass rate, and do not treat 4/8 as a Stage 2 pass.
-- requirement: Predicate difficulty: count_true(full_credit_boolean) ≤ 2. At most 2 of the 8 rollouts may earn full credit. More than that and the task is too easy. UI: Required: ≤2.
+- contradiction_or_rejection_risk: C-DIFFICULTY remains open against the acceptance pass-rate sentence.
+- requirement: Predicate difficulty: count_true(full_credit_boolean) ≤ 4. At most 4 of the 8 rollouts may earn full credit. More than that and the task is too easy.
 
 ## REQ-S2-004
 - obligation: mandatory
 - scope: task
 - stages: stage2
-- source: p.12 §6.2; p.13 screenshot
+- source: p.14 §6.2
 - section: long_horizon predicate
 - explained_in: 03-difficulty-and-horizon/DESIGN.md
-- compliance_check: The observed median on the passing run is greater than 80.
+- compliance_check: The observed median on the passing run is greater than 35.
 - evidence: stage2.txt
-- contradiction_or_rejection_risk: C-HORIZON is unresolved. The acceptance page states a different statistic: more than 35 turns of all passing runs. Do not treat the median rule as that test.
-- requirement: Predicate long_horizon: median(assistant_message_count) > 80. A median of about 48 turns fails this even when difficulty passes. UI label: Median assistant turns, Required: >80.
+- contradiction_or_rejection_risk: C-HORIZON remains open against the acceptance minimum of all passing runs.
+- requirement: Predicate long_horizon: median(assistant_message_count) > 35. A median of about 25 turns fails this even when difficulty passes.
 
 ## REQ-S2-005
 - obligation: mandatory
 - scope: task
 - stages: stage2
-- source: p.12 §6.2
+- source: p.14 §6.2
 - section: Both predicates
 - explained_in: 14-platform-review/STAGE-2.md
 - compliance_check: A PASS receipt has both predicates true. A FAIL receipt names which one.
@@ -1761,10 +1787,10 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: stage2
-- source: p.13 §6.3
+- source: p.15 §6.3
 - section: Too easy
 - explained_in: 03-difficulty-and-horizon/GENUINE-COMPLEXITY.md
-- compliance_check: complexity.md names the page 13 move and the instruction sentence added with it. The coverage table gained a row for that sentence. No test asserts an unstated condition.
+- compliance_check: complexity.md names the page 15 move and the instruction sentence added with it. The coverage table gained a row for that sentence. No test asserts an unstated condition.
 - evidence: complexity.md; instruction.md
 - contradiction_or_rejection_risk: Hidden information fails Well-specified and Solvable from instruction alone. A task that sounds hard is not this row.
 - requirement: If too many rollouts earn full credit, add depth: more cross-source correlation, more state that must stay consistent, stricter exactness in the output contract. Do not fix it by hiding information in the instruction.
@@ -1773,7 +1799,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: stage2
-- source: p.13 §6.3
+- source: p.15 §6.3
 - section: Too short
 - explained_in: 03-difficulty-and-horizon/GENUINE-COMPLEXITY.md
 - compliance_check: complexity.md names the new component or boundary condition and the instruction sentence that states it. The local-measurement block is re-run. The platform-verdict block is not filled from that rerun.
@@ -1785,7 +1811,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage2
-- source: p.13 screenshot
+- source: p.15 screenshot
 - section: Indeterminate
 - explained_in: 14-platform-review/STAGE-2.md
 - compliance_check: Indeterminate is not recorded as a difficulty FAIL and the task is not rewritten for it.
@@ -1793,23 +1819,47 @@ Regenerate with `python3 tools/build_register.py`.
 - contradiction_or_rejection_risk: Pressing Stop while a provider attempt is active makes the run noncanonical rather than retryable.
 - requirement: A blocked rollout shows INDETERMINATE, population incomplete, and in the example RUNNER_EXECUTION_FAILED with 'Blocked with 0 of 8 rollouts reconciled. No predicate can move until the blocker clears.' Platform on-call unblocks it.
 
+## REQ-S3-001
+- obligation: mandatory
+- scope: process
+- stages: acceptance
+- source: pp. 15–17 §7
+- section: Stage 3 decides acceptance
+- explained_in: 14-platform-review/STAGE-3.md
+- compliance_check: acceptance.txt is not marked accepted from Stage 2 alone. The eight attempt records are archived.
+- evidence: stage2.txt; acceptance.txt; review-findings.md
+- contradiction_or_rejection_risk: Padding to inflate turns will be read as busywork at Stage 3.
+- requirement: Stage 2 measures; Stage 3 decides. A Stage 2 PASS does not accept the task. Stage 3 reads the eight retained rollouts and does not run new attempts.
+
+## REQ-S3-002
+- obligation: platform
+- scope: platform
+- stages: acceptance
+- source: p.16 §7.2
+- section: Stage 3 verdicts
+- explained_in: 14-platform-review/STAGE-3.md
+- compliance_check: The archived verdict is one of those three strings.
+- evidence: acceptance.txt
+- contradiction_or_rejection_risk: COULD NOT COMPLETE is not a task rewrite.
+- requirement: Stage 3 ends in ACCEPTED (all 8 established, no material task defect), REJECTED (material task defect; upload a new ZIP starting at Stage 1), or COULD NOT COMPLETE (incomplete; not a rejection; no replacement ZIP required).
+
 ## REQ-LM-001
 - obligation: unresolved
 - scope: account
 - stages: package
-- source: p.20 limits table
+- source: p.26 limits table
 - section: Reuploads
 - explained_in: 00-source/CONFLICT-REGISTER.md
-- compliance_check: Both 7 and 3 are recorded. C-REUPLOADS is unresolved. Do not upload a 4th through 7th version, and do not stop at 3, unless the live counter is quoted in the decision log.
+- compliance_check: Workflow uses 7 from the limits table. Leftover 3-reupload sentences are flagged. Quote the live counter.
 - evidence: decision-log.md
-- contradiction_or_rejection_risk: C-REUPLOADS. Prose in four places says 3.
+- contradiction_or_rejection_risk: C-REUPLOADS. Leftover sentences still say 3.
 - requirement: The limits table sets Reuploads (new versions) per task to 7.
 
 ## REQ-LM-002
 - obligation: unresolved
 - scope: account
 - stages: proposal
-- source: p.20 limits table
+- source: p.26 limits table
 - section: Total submissions
 - explained_in: 00-source/CONFLICT-REGISTER.md
 - compliance_check: Human gate before creating a task. The term submission is not defined.
@@ -1821,7 +1871,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: account
 - stages: package
-- source: p.20 limits table
+- source: p.26 limits table
 - section: Hourly evaluation limit
 - explained_in: 14-platform-review/STAGE-1.md
 - compliance_check: No third distinct ZIP is uploaded in the same hour.
@@ -1833,7 +1883,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: account
 - stages: package
-- source: p.20 limits table
+- source: p.26 limits table
 - section: Daily evaluation limit
 - explained_in: 14-platform-review/STAGE-1.md
 - compliance_check: The day's uploads stay at or under 5 unique versions.
@@ -1845,7 +1895,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: unresolved
 - scope: account
 - stages: proposal
-- source: p.20 limits table
+- source: p.26 limits table
 - section: Task creation limit
 - explained_in: 00-source/CONFLICT-REGISTER.md
 - compliance_check: Before a second platform task, record the live quota if the UI shows it. Do not ask the user to choose a category or a task idea.
@@ -1857,7 +1907,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: proposal
-- source: p.20
+- source: p.26
 - section: Locked at creation
 - explained_in: 02-ideation/SELECTION.md
 - compliance_check: selection.md records category and programming language before the platform task exists. The agent chooses them and does not ask the user. U-LANGUAGE-FIELD: the proposal form's five fields do not include a language field, so the UI control's label is recorded when it appears, or as not shown.
@@ -1869,7 +1919,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: process
 - stages: package
-- source: p.21
+- source: p.27
 - section: Identical ZIP
 - explained_in: 14-platform-review/STAGE-1.md
 - compliance_check: A new upload has a new SHA-256 and a real content change.
@@ -1881,19 +1931,19 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: unresolved
 - scope: process
 - stages: all
-- source: pp. 20–21 troubleshooting and checklist
+- source: pp. 26–27 troubleshooting and checklist
 - section: Legacy pipeline names
 - explained_in: 00-source/CONFLICT-REGISTER.md
-- compliance_check: Do not execute the legacy cards as if the change table retired them. C-LEGACY-CARDS is unresolved. C-CANARY, C-NINE-DIMENSIONS, and C-REUPLOADS stay open. Keep the acceptance obligations that are reprinted on pp. 25–26.
+- compliance_check: Do not execute the legacy cards as if the change table retired them. C-LEGACY-CARDS is unresolved. C-CANARY, C-NINE-DIMENSIONS, and C-REUPLOADS stay open. Keep the acceptance obligations that are reprinted on pp. 31–32.
 - evidence: decision-log.md
-- contradiction_or_rejection_risk: Following this checklist literally contradicts pp. 1–14.
+- contradiction_or_rejection_risk: Following this checklist literally contradicts pp. 1–18.
 - requirement: The troubleshooting table and final checklist still require a canary DM, canary_string, Proposal Match, Agent Trials, Cheat Trial, Harbor Analyze, and 'All 9 Quality Dimensions green'. They also say 'You hit 3 versions for that task.'
 
 ## REQ-TX-001
 - obligation: mandatory
 - scope: batch
 - stages: batch
-- source: p.22
+- source: p.28
 - section: Taxonomy source
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: Every delivered task uses a category and subcategory from the printed table, or a justified custom subcategory.
@@ -1905,7 +1955,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: batch
 - stages: batch
-- source: p.22
+- source: p.28
 - section: 20% cap
 - explained_in: 01-taxonomy-and-batch/BATCH.md
 - compliance_check: The batch count by category stays at or under 20% of delivered tasks.
@@ -1917,7 +1967,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: batch
 - stages: batch
-- source: p.22
+- source: p.28
 - section: Deprioritized slices
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: The batch plan has one slot per subcategory in those three categories and does not fill the batch with them.
@@ -1929,7 +1979,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: batch
 - stages: batch
-- source: p.22
+- source: p.28
 - section: Do not concentrate
 - explained_in: 01-taxonomy-and-batch/BATCH.md
 - compliance_check: The plan shows non-zero room for Hardware, Security, and ML, and does not make Software plus Science the bulk.
@@ -1941,7 +1991,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: unresolved
 - scope: batch
 - stages: batch
-- source: p.24 note
+- source: p.30 note
 - section: 66 tasks
 - explained_in: 00-source/UNRESOLVED.md
 - compliance_check: No numeric target out of 66 is invented or enforced.
@@ -1953,7 +2003,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: build
-- source: p.23 Training
+- source: p.29 Training
 - section: Single H100
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: gpu_types for a training task is a single H100, which is in the canonical list.
@@ -1965,7 +2015,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: advisory
 - scope: task
 - stages: proposal
-- source: pp. 22–24
+- source: pp. 28–30
 - section: Release-composition remarks
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: Those phrases are not turned into submission quotas.
@@ -1977,7 +2027,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: proposal
-- source: pp. 22–24
+- source: pp. 28–30
 - section: Subcategory catalog
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: The subcategory string matches one of these unless a custom value was justified.
@@ -1989,7 +2039,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: task
 - stages: proposal,batch
-- source: p.22
+- source: p.28
 - section: Software / Systems
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: If this subcategory is selected, the task fits this description.
@@ -2001,7 +2051,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: task
 - stages: proposal,batch
-- source: p.22
+- source: p.28
 - section: Software / Algorithms
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: If this subcategory is selected, the task fits this description.
@@ -2013,7 +2063,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: task
 - stages: proposal,batch
-- source: p.22
+- source: p.28
 - section: Software / Frontend
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: If this subcategory is selected, the task fits this description.
@@ -2025,7 +2075,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: task
 - stages: proposal,batch
-- source: p.22
+- source: p.28
 - section: Software / Data engineering
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: If this subcategory is selected, the task fits this description.
@@ -2037,7 +2087,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: task
 - stages: proposal,batch
-- source: p.22
+- source: p.28
 - section: Software / Databases
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: If this subcategory is selected, the task fits this description.
@@ -2049,7 +2099,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: task
 - stages: proposal,batch
-- source: p.22
+- source: p.28
 - section: ML / Inference
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: If this subcategory is selected, the task fits this description.
@@ -2061,7 +2111,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: task
 - stages: proposal,batch
-- source: p.22
+- source: p.28
 - section: ML / Evaluation
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: If this subcategory is selected, the task fits this description.
@@ -2073,7 +2123,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: task
 - stages: proposal,batch
-- source: p.22
+- source: p.28
 - section: ML / Training
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: If this subcategory is selected, the task fits this description.
@@ -2085,7 +2135,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: task
 - stages: proposal,batch
-- source: p.23
+- source: p.29
 - section: ML / Kernels
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: If this subcategory is selected, the task fits this description.
@@ -2097,7 +2147,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: task
 - stages: proposal,batch
-- source: p.23
+- source: p.29
 - section: Security / Cryptography
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: If this subcategory is selected, the task fits this description.
@@ -2109,7 +2159,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: task
 - stages: proposal,batch
-- source: p.23
+- source: p.29
 - section: Security / Forensics
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: If this subcategory is selected, the task fits this description.
@@ -2121,7 +2171,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: task
 - stages: proposal,batch
-- source: p.23
+- source: p.29
 - section: Security / AppSec
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: If this subcategory is selected, the task fits this description.
@@ -2133,7 +2183,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: task
 - stages: proposal,batch
-- source: p.23
+- source: p.29
 - section: Hardware / CAD
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: If this subcategory is selected, the task fits this description.
@@ -2145,7 +2195,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: task
 - stages: proposal,batch
-- source: p.23
+- source: p.29
 - section: Hardware / RTL
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: If this subcategory is selected, the task fits this description.
@@ -2157,7 +2207,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: task
 - stages: proposal,batch
-- source: p.23
+- source: p.29
 - section: Science / Biology
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: If this subcategory is selected, the task fits this description. This deprioritized subcategory is used at most once in the batch.
@@ -2169,7 +2219,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: task
 - stages: proposal,batch
-- source: p.23
+- source: p.29
 - section: Science / Chemistry
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: If this subcategory is selected, the task fits this description. This deprioritized subcategory is used at most once in the batch.
@@ -2181,7 +2231,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: task
 - stages: proposal,batch
-- source: p.23
+- source: p.29
 - section: Science / Physics
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: If this subcategory is selected, the task fits this description. This deprioritized subcategory is used at most once in the batch.
@@ -2193,7 +2243,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: task
 - stages: proposal,batch
-- source: p.23
+- source: p.29
 - section: Science / Earth
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: If this subcategory is selected, the task fits this description. This deprioritized subcategory is used at most once in the batch.
@@ -2205,7 +2255,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: task
 - stages: proposal,batch
-- source: p.23
+- source: p.29
 - section: Science / Robotics
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: If this subcategory is selected, the task fits this description. This deprioritized subcategory is used at most once in the batch.
@@ -2217,7 +2267,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: task
 - stages: proposal,batch
-- source: p.23
+- source: p.29
 - section: Science / Math
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: If this subcategory is selected, the task fits this description. This deprioritized subcategory is used at most once in the batch.
@@ -2229,7 +2279,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: task
 - stages: proposal,batch
-- source: p.23
+- source: p.29
 - section: Science / Linguistics
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: If this subcategory is selected, the task fits this description. This deprioritized subcategory is used at most once in the batch.
@@ -2241,7 +2291,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: task
 - stages: proposal,batch
-- source: p.23
+- source: p.29
 - section: Operations / Finance
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: If this subcategory is selected, the task fits this description. This deprioritized subcategory is used at most once in the batch.
@@ -2253,7 +2303,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: task
 - stages: proposal,batch
-- source: p.23
+- source: p.29
 - section: Operations / Logistics
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: If this subcategory is selected, the task fits this description. This deprioritized subcategory is used at most once in the batch.
@@ -2265,7 +2315,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: task
 - stages: proposal,batch
-- source: p.23
+- source: p.29
 - section: Operations / Supply chain
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: If this subcategory is selected, the task fits this description. This deprioritized subcategory is used at most once in the batch.
@@ -2277,7 +2327,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: task
 - stages: proposal,batch
-- source: p.24
+- source: p.30
 - section: Operations / Claims
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: If this subcategory is selected, the task fits this description. This deprioritized subcategory is used at most once in the batch.
@@ -2289,7 +2339,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: task
 - stages: proposal,batch
-- source: p.24
+- source: p.30
 - section: Operations / Compliance
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: If this subcategory is selected, the task fits this description. This deprioritized subcategory is used at most once in the batch.
@@ -2301,7 +2351,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: task
 - stages: proposal,batch
-- source: p.24
+- source: p.30
 - section: Operations / Marketing
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: If this subcategory is selected, the task fits this description. This deprioritized subcategory is used at most once in the batch.
@@ -2313,7 +2363,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: task
 - stages: proposal,batch
-- source: p.24
+- source: p.30
 - section: Media / Music
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: If this subcategory is selected, the task fits this description. This deprioritized subcategory is used at most once in the batch.
@@ -2325,7 +2375,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: task
 - stages: proposal,batch
-- source: p.24
+- source: p.30
 - section: Media / Design
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: If this subcategory is selected, the task fits this description. This deprioritized subcategory is used at most once in the batch.
@@ -2337,31 +2387,31 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: proposal
-- source: p.7 §4.2 with p.22 Algorithms and p.23 Math
+- source: p.8 §4.2 with p.28 Algorithms and p.29 Math
 - section: No contest inside the taxonomy
 - explained_in: 01-taxonomy-and-batch/TAXONOMY.md
 - compliance_check: The proposal's difficulty is an engineering or formal-verification constraint inside a realistic system, not a contest statement.
 - evidence: proposal.md
-- contradiction_or_rejection_risk: The taxonomy example does not waive p.7.
+- contradiction_or_rejection_risk: The taxonomy example does not waive p.8.
 - requirement: Algorithms may include performance work, and Math may be formal proof, but LeetCode-style, olympiad, and 'invent a hard problem' tasks remain prohibited.
 
 ## REQ-AC-001
 - obligation: mandatory
 - scope: process
 - stages: acceptance
-- source: p.25
+- source: p.31
 - section: Taxonomies tab
 - explained_in: 00-source/INVENTORY.md
 - compliance_check: Batch evidence uses that table.
 - evidence: batch-slot.md
 - contradiction_or_rejection_risk: Do not wait for a separate tab that is not in the file.
-- requirement: Acceptance says to see the Taxonomies tab. In this PDF that content is the category table on pp. 22–24.
+- requirement: Acceptance says to see the Taxonomies tab. In this PDF that content is the category table on pp. 28–30.
 
 ## REQ-AC-002
 - obligation: mandatory
 - scope: task
 - stages: acceptance,stage2
-- source: p.25
+- source: p.31
 - section: Acceptance difficulty
 - explained_in: 03-difficulty-and-horizon/DESIGN.md
 - compliance_check: Record both the Stage 2 predicate and the acceptance pass rate. C-DIFFICULTY does not let either replace the other. The 8-hour phrase is C-TIMEOUT and is also unresolved.
@@ -2373,19 +2423,19 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: acceptance,stage2
-- source: p.25
+- source: p.31
 - section: Acceptance horizon
 - explained_in: 14-platform-review/STAGE-2.md
-- compliance_check: Every full-credit trajectory that is available has more than 35 assistant turns, and the Stage 2 median is > 80.
+- compliance_check: Every full-credit trajectory that is available has more than 35 assistant turns, and the Stage 2 median is > 35. These are different statistics (C-HORIZON).
 - evidence: stage2.txt
-- contradiction_or_rejection_risk: C-HORIZON. Median > 80 does not by itself prove every passing run is > 35; inspect the passing runs.
+- contradiction_or_rejection_risk: C-HORIZON. Median > 35 does not by itself prove every passing run is > 35; inspect the passing runs.
 - requirement: Long horizon gate: a minimum of 35 turns of all passing runs in the Anonymous model. The table says Turns (role=assistant): Anonymous > 35 turns.
 
 ## REQ-AC-004
 - obligation: unresolved
 - scope: task
 - stages: acceptance
-- source: p.25 item 3
+- source: p.31 item 3
 - section: Both columns
 - explained_in: 00-source/CONFLICT-REGISTER.md
 - compliance_check: Satisfy the printed column and the Stage 2 predicates. Do not invent a second model and do not waive a failure because a hidden column might exist.
@@ -2397,7 +2447,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: unresolved
 - scope: process
 - stages: acceptance
-- source: p.25
+- source: p.31
 - section: External automation doc
 - explained_in: 14-platform-review/ACCEPTANCE.md
 - compliance_check: Execute the six bullets printed under the sentence. Do not invent the rest of the missing file.
@@ -2409,7 +2459,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: acceptance
-- source: p.25 bullet
+- source: p.31 bullet
 - section: Pipeline static checks
 - explained_in: 14-platform-review/ACCEPTANCE.md
 - compliance_check: The static-check table passes. Canary strings are handled only through C-CANARY.
@@ -2421,7 +2471,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: acceptance
-- source: p.25 bullet
+- source: p.31 bullet
 - section: harbor check
 - explained_in: 14-platform-review/ACCEPTANCE.md
 - compliance_check: The command used, including arguments the pinned Harbor accepts, is archived. The rubric criteria are the 30 in this PDF.
@@ -2433,7 +2483,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: acceptance
-- source: p.25 bullet
+- source: p.31 bullet
 - section: Docker / Oracle / No-op
 - explained_in: 14-platform-review/ACCEPTANCE.md
 - compliance_check: Build log, oracle 1.0, and nop 0.0 are on the accepted SHA-256.
@@ -2445,7 +2495,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: process
 - stages: acceptance
-- source: p.25 bullet
+- source: p.31 bullet
 - section: Maintainer review
 - explained_in: 14-platform-review/ACCEPTANCE.md
 - compliance_check: acceptance.txt has a maintainer sign-off that postdates the green automated gates.
@@ -2457,7 +2507,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: acceptance
-- source: p.25 bullet
+- source: p.31 bullet
 - section: Cheat trials
 - explained_in: 14-platform-review/ACCEPTANCE.md
 - compliance_check: cheat-trials.md records attempts that include reward-file writes, hardcoded fixtures, and reads of hidden tests, and shows they fail.
@@ -2469,7 +2519,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: mandatory
 - scope: task
 - stages: acceptance
-- source: p.26 bullet
+- source: p.32 bullet
 - section: Hacker-fixer loop
 - explained_in: 14-platform-review/ACCEPTANCE.md
 - compliance_check: The last recorded cheat attempt fails, and Oracle still scores 1.0 after the hardening.
@@ -2481,7 +2531,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: unresolved
 - scope: process
 - stages: acceptance
-- source: p.26
+- source: p.32
 - section: All four criteria
 - explained_in: 00-source/CONFLICT-REGISTER.md
 - compliance_check: The task is not called accepted at submission or at static-check pass. All printed pipeline bullets are still required. The word four is not mapped onto a subset.
@@ -2505,19 +2555,19 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: all
-- source: pp. 5, 10, 11, 13 screenshots
+- source: p.3 journey; pp. 15–17 §7
 - section: Stage tabs
-- explained_in: 14-platform-review/ACCEPTANCE.md
-- compliance_check: Stage 3 is not marked passed while the badge says DEFERRED.
-- evidence: stage1.txt
-- contradiction_or_rejection_risk: C-LEGACY-CARDS. U-STAGE3. A deferred Stage 3 tab is not a QC pass.
-- requirement: The UI tabs are Stage 0 • Task proposal, Stage 1 • Static checks, Stage 2 • Model rollout, and Stage 3 • Qualitative checks marked DEFERRED.
+- explained_in: 14-platform-review/STAGE-3.md
+- compliance_check: Stage 3 is recorded from the live receipt. A Stage 2 PASS is not acceptance.
+- evidence: acceptance.txt
+- contradiction_or_rejection_risk: C-LEGACY-CARDS leftover cards remain. Follow 14-platform-review/STAGE-3.md.
+- requirement: The UI tabs are Stage 0 Task proposal, Stage 1 Static checks, Stage 2 Model rollout, and Stage 3 Qualitative checks. SOP v3.0 describes Stage 3 as the acceptance review with ACCEPTED, REJECTED, and COULD NOT COMPLETE.
 
 ## REQ-UI-002
 - obligation: example
 - scope: process
 - stages: proposal
-- source: p.4 screenshot
+- source: p.5 screenshot
 - section: Form prompts
 - explained_in: 04-proposal/PROPOSAL.md
 - compliance_check: Those four prompts are covered by the six §3.3 topics inside the 2000-character cap.
@@ -2529,7 +2579,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: I01 Upload snapshot
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2541,7 +2591,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: I01 Upload snapshot
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2553,7 +2603,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: I01 Upload snapshot
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2565,7 +2615,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G01 Archive safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2577,7 +2627,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G01 Archive safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2589,7 +2639,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G01 Archive safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2601,7 +2651,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G01 Archive safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2613,7 +2663,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G01 Archive safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2625,7 +2675,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G01 Archive safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2637,7 +2687,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G01 Archive safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2649,7 +2699,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G01 Archive safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2661,7 +2711,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G01 Archive safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2673,7 +2723,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G01 Archive safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2685,7 +2735,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G01 Archive safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2697,7 +2747,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G01 Archive safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2709,7 +2759,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G01 Archive safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2721,7 +2771,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G01 Archive safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2733,7 +2783,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G01 Archive safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2745,7 +2795,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G01 Archive safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2757,7 +2807,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G01 Archive safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2769,7 +2819,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G01 Archive safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2781,7 +2831,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G01 Archive safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2793,7 +2843,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G01 Archive safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2805,7 +2855,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G01 Archive safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2817,7 +2867,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G01 Archive safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2829,7 +2879,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G01 Archive safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2841,7 +2891,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G01 Archive safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2853,7 +2903,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G01 Archive safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2865,7 +2915,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G02 Harbor + TB4 contract
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2877,7 +2927,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G02 Harbor + TB4 contract
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2889,7 +2939,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G02 Harbor + TB4 contract
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2901,7 +2951,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G02 Harbor + TB4 contract
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2913,7 +2963,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G02 Harbor + TB4 contract
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2925,7 +2975,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G02 Harbor + TB4 contract
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2937,7 +2987,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G02 Harbor + TB4 contract
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2949,7 +2999,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G02 Harbor + TB4 contract
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2961,7 +3011,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G02 Harbor + TB4 contract
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -2973,31 +3023,31 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: advisory
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G02 Harbor + TB4 contract
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
 - evidence: stage1.txt
-- contradiction_or_rejection_risk: Name contains ADVISORY, which p.9 says does not reject. C-CANARY. U-SEVERITY-ALIGNMENT. Severity badges in the screenshots were not column-aligned, so this row does not assert REQUIRED versus OPTIONAL.
+- contradiction_or_rejection_risk: Name contains ADVISORY, which p.11 says does not reject. C-CANARY. U-SEVERITY-ALIGNMENT. Severity badges in the screenshots were not column-aligned, so this row does not assert REQUIRED versus OPTIONAL.
 - requirement: Platform rule `TB3.CANARY_ADVISORY` is visible under G02 Harbor + TB4 contract. Confidence: screenshot. The author prevents the failing condition named by the rule and archives the live text if it fires.
 
 ## REQ-PL-G02-TB3-AUTHORING_ADVISORY
 - obligation: advisory
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G02 Harbor + TB4 contract
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
 - evidence: stage1.txt
-- contradiction_or_rejection_risk: Name contains ADVISORY, which p.9 says does not reject. U-SEVERITY-ALIGNMENT. Severity badges in the screenshots were not column-aligned, so this row does not assert REQUIRED versus OPTIONAL.
+- contradiction_or_rejection_risk: Name contains ADVISORY, which p.11 says does not reject. U-SEVERITY-ALIGNMENT. Severity badges in the screenshots were not column-aligned, so this row does not assert REQUIRED versus OPTIONAL.
 - requirement: Platform rule `TB3.AUTHORING_ADVISORY` is visible under G02 Harbor + TB4 contract. Confidence: screenshot. The author prevents the failing condition named by the rule and archives the live text if it fires.
 
 ## REQ-PL-G02-HARBOR-DEPRECATED_ALLOW_INTERNET
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G02 Harbor + TB4 contract
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3009,7 +3059,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G02 Harbor + TB4 contract
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3021,7 +3071,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G02 Harbor + TB4 contract
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3033,19 +3083,19 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: advisory
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G02 Harbor + TB4 contract
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
 - evidence: stage1.txt
-- contradiction_or_rejection_risk: Name contains ADVISORY, which p.9 says does not reject. U-SEVERITY-ALIGNMENT. Severity badges in the screenshots were not column-aligned, so this row does not assert REQUIRED versus OPTIONAL.
+- contradiction_or_rejection_risk: Name contains ADVISORY, which p.11 says does not reject. U-SEVERITY-ALIGNMENT. Severity badges in the screenshots were not column-aligned, so this row does not assert REQUIRED versus OPTIONAL.
 - requirement: Platform rule `PACKAGE.EXTRA_CONTENT_ADVISORY` is visible under G02 Harbor + TB4 contract. Confidence: screenshot. The author prevents the failing condition named by the rule and archives the live text if it fires.
 
 ## REQ-PL-G02-PACKAGE-REQUIRED_FILE_MISSING
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G02 Harbor + TB4 contract
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3057,7 +3107,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G02 Harbor + TB4 contract
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3069,19 +3119,19 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: advisory
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G02 Harbor + TB4 contract
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
 - evidence: stage1.txt
-- contradiction_or_rejection_risk: Name contains ADVISORY, which p.9 says does not reject. U-SEVERITY-ALIGNMENT. Severity badges in the screenshots were not column-aligned, so this row does not assert REQUIRED versus OPTIONAL.
+- contradiction_or_rejection_risk: Name contains ADVISORY, which p.11 says does not reject. U-SEVERITY-ALIGNMENT. Severity badges in the screenshots were not column-aligned, so this row does not assert REQUIRED versus OPTIONAL.
 - requirement: Platform rule `PROFILE.TIMEOUT_ADVISORY` is visible under G02 Harbor + TB4 contract. Confidence: screenshot. The author prevents the failing condition named by the rule and archives the live text if it fires.
 
 ## REQ-PL-G02-TB3-AGENT_NETWORK_NONPUBLIC
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G02 Harbor + TB4 contract
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3093,7 +3143,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G02 Harbor + TB4 contract
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3105,7 +3155,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G02 Harbor + TB4 contract
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3117,7 +3167,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G02 Harbor + TB4 contract
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3129,7 +3179,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G03 Static execution safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3141,7 +3191,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G03 Static execution safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3153,7 +3203,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G03 Static execution safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3165,7 +3215,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G03 Static execution safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3177,7 +3227,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G03 Static execution safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3189,7 +3239,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G03 Static execution safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3201,7 +3251,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G03 Static execution safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3213,7 +3263,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G03 Static execution safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3225,7 +3275,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G03 Static execution safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3237,7 +3287,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G03 Static execution safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3249,7 +3299,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G03 Static execution safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3261,7 +3311,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G03 Static execution safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3273,7 +3323,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G03 Static execution safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3285,7 +3335,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G03 Static execution safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3297,7 +3347,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: conditional
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G03 Static execution safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3309,7 +3359,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G03 Static execution safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3321,7 +3371,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G03 Static execution safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3333,7 +3383,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G03 Static execution safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3345,7 +3395,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G03 Static execution safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3357,7 +3407,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G03 Static execution safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3369,19 +3419,19 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: advisory
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G03 Static execution safety
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
 - evidence: stage1.txt
-- contradiction_or_rejection_risk: Name contains ADVISORY, which p.9 says does not reject. U-SEVERITY-ALIGNMENT. Severity badges in the screenshots were not column-aligned, so this row does not assert REQUIRED versus OPTIONAL.
+- contradiction_or_rejection_risk: Name contains ADVISORY, which p.11 says does not reject. U-SEVERITY-ALIGNMENT. Severity badges in the screenshots were not column-aligned, so this row does not assert REQUIRED versus OPTIONAL.
 - requirement: Platform rule `STATIC.ADVISORY` is visible under G03 Static execution safety. Confidence: screenshot. The author prevents the failing condition named by the rule and archives the live text if it fires.
 
 ## REQ-PL-G04-AGENT_ENV_BUILD
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G04 Environment readiness
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3393,7 +3443,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G04 Environment readiness
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3405,7 +3455,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G04 Environment readiness
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3417,7 +3467,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G04 Environment readiness
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3429,7 +3479,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G04 Environment readiness
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3441,7 +3491,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G04 Environment readiness
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3453,7 +3503,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G04 Environment readiness
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3465,7 +3515,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G04 Environment readiness
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3477,7 +3527,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G04 Environment readiness
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3489,7 +3539,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G04 Environment readiness
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3501,7 +3551,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G04 Environment readiness
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3513,7 +3563,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G04 Environment readiness
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3525,7 +3575,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G05 Verifier controls
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3537,7 +3587,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G05 Verifier controls
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3549,7 +3599,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G05 Verifier controls
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3561,7 +3611,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G05 Verifier controls
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3573,7 +3623,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G05 Verifier controls
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3585,7 +3635,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G05 Verifier controls
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3597,7 +3647,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G05 Verifier controls
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3609,7 +3659,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G05 Verifier controls
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3621,7 +3671,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G05 Verifier controls
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3633,7 +3683,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G05 Verifier controls
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3645,7 +3695,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G05 Verifier controls
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3657,7 +3707,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G05 Verifier controls
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3669,7 +3719,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G05 Verifier controls
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3681,7 +3731,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G05 Verifier controls
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3693,7 +3743,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G05 Verifier controls
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3705,7 +3755,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G05 Verifier controls
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3717,7 +3767,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G05 Verifier controls
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3729,7 +3779,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G05 Verifier controls
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3741,7 +3791,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G05 Verifier controls
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3753,7 +3803,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G05 Verifier controls
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3765,7 +3815,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G05 Verifier controls
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3777,7 +3827,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G05 Verifier controls
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3789,7 +3839,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G05 Verifier controls
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3801,7 +3851,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G05 Verifier controls
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3813,7 +3863,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G05 Verifier controls
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3825,7 +3875,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G05 Verifier controls
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3837,7 +3887,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: G05 Verifier controls
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3849,7 +3899,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: P04 Final publication barrier
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3861,7 +3911,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: P04 Final publication barrier
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3873,7 +3923,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: P04 Final publication barrier
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3885,7 +3935,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: P04 Final publication barrier
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3897,7 +3947,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: P04 Final publication barrier
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3909,7 +3959,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: P04 Final publication barrier
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3921,7 +3971,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: P04 Final publication barrier
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3933,7 +3983,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: P04 Final publication barrier
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3945,7 +3995,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: P04 Final publication barrier
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3957,7 +4007,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: P04 Final publication barrier
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3969,7 +4019,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: P04 Final publication barrier
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.
@@ -3981,7 +4031,7 @@ Regenerate with `python3 tools/build_register.py`.
 - obligation: platform
 - scope: platform
 - stages: stage1
-- source: pp. 10–11 screenshots; gate prose pp. 9–11
+- source: pp. 12–13 screenshots; gate prose pp. 10–11
 - section: P04 Final publication barrier
 - explained_in: 00-source/PLATFORM-RULE-CATALOG.md
 - compliance_check: Stage 1 blocking reason is not this id, or the outcome is a documented retry rather than a task rewrite when the prose classifies it as platform-side.

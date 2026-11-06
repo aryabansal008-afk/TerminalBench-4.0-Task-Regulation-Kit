@@ -6,7 +6,7 @@ No category in this system is a default. The skeletons leave `category` and `sub
 
 ## What is immutable
 
-**Source.** Page 20: once a task is created, its category and programming language cannot be changed. Category and subcategory are stored on every revision, and the reviewer reads both. The proposal form’s five fields do not include a language field (`U-LANGUAGE-FIELD`). Do not invent a `task.toml` key for language.
+**Source.** Page 26: once a task is created, its category and programming language cannot be changed. Category and subcategory are stored on every revision, and the reviewer reads both. The proposal form’s five fields do not include a language field (`U-LANGUAGE-FIELD`). Do not invent a `task.toml` key for language.
 
 **Practice.** Write `selection.md` before the platform task is created. After creation, do not try to repair a wrong category or a wrong language with a later ZIP. Subcategory is not in that lock sentence. Do not assume a later revision can change it, and do not assume it is frozen, until the UI shows which. The language the agent chose is what gets entered if a language control appears. Record that control’s visible label. If the form has no language control, write `language_control: not shown`. Keep the chosen language in `selection.md` either way.
 

@@ -1,6 +1,6 @@
 # How to read this system
 
-The PDF is the source. `REGISTER.md` is the canonical list of extracted requirements. `CONFLICT-REGISTER.md` is the only place a conflict is marked superseded, unresolved, or compatible. `UNAVAILABLE-SOURCES.md` lists documents the PDF names and does not contain. Do not fill those from memory.
+SOP v3.0 is the source. `REGISTER.md` / `REGISTER.csv` are the canonical extracted requirements (generated together). `INVENTORY.md` maps pages and requirement classes (superseded, new, unchanged, internally contradictory, practice). `REQUIREMENT-CLASSES.md` lists those classes by requirement id. Retired 26-page freelancer-PDF numbers are tabulated in `HISTORICAL-PREVIOUS-PDF.md`. Do not copy them into tasks, checker defaults, or conversation-flow prompts. Conflict and class files may name them only as superseded. `CONFLICT-REGISTER.md` is the only place a conflict is marked superseded, unresolved, or compatible. `UNAVAILABLE-SOURCES.md` lists documents the PDF names and does not contain. Do not fill those from memory.
 
 A later page does not repeal an earlier page. An earlier page does not repeal a later page. Apply a side only when the conflict register quotes the PDF naming that side as the old way.
 
@@ -20,15 +20,15 @@ If a practice paragraph and a source paragraph disagree, follow the source. If t
 | `mandatory` | Required for a compliant task, proposal, batch, or account action. | Satisfy it and keep evidence. |
 | `conditional` | Required only when the feature is present. The PDF’s phrase is `IF APPLICABLE`. | If present, treat as mandatory. If absent, record why. |
 | `advisory` | Recommended, or warning-level. `OPTIONAL / ADVISORY` does not by itself reject the task. | Follow it, or record a reason not to. |
-| `example` | A sample task, verdict, hash, or layout. The DFIR tree on pages 6–7 is an example of extra files, not the required file list. | Use the pattern the surrounding prose states. Do not copy its filenames into an unrelated task. |
+| `example` | A sample task, verdict, hash, or layout. The DFIR tree on pages 7–8 is an example of extra files, not the required file list. | Use the pattern the surrounding prose states. Do not copy its filenames into an unrelated task. |
 | `unresolved` | The PDF does not let the author execute the point unambiguously. | Stop for the clarification named in the conflict register or `UNRESOLVED.md`. |
 | `platform` | Enforced on an uploaded ZIP or during rollout. A local script cannot mark it passed. | Prevent the failing condition. Evidence is the platform receipt. |
 
 ## Scope and stage
 
-Scope is `task`, `batch`, `account`, `platform`, or `process`. Stage is one or more of `proposal`, `grant`, `build`, `self-test`, `package`, `stage1`, `stage2`, `acceptance`, `batch`, `account`. Evidence is collected at the earliest stage where it can be shown.
+Scope is `task`, `batch`, `account`, `platform`, or `process`. Stage is one or more of `proposal`, `grant`, `build`, `self-test`, `package`, `stage1`, `stage2`, `stage3`, `acceptance`, `batch`, `account`. Evidence is collected at the earliest stage where it can be shown. Conversation-flow “Stage 3” in `START-FRESH.md` means grant. Platform Stage 3 means qualitative review.
 
-## Platform severity, page 9
+## Platform severity, page 11
 
 | Platform label | Effect the PDF states |
 | --- | --- |

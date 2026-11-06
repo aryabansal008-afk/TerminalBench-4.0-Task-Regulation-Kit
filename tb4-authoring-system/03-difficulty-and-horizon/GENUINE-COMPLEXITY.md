@@ -33,10 +33,10 @@ Do not start a difficulty argument until these four are true. They are source re
 | Do not use | Why it is not difficulty |
 | --- | --- |
 | Ambiguity | Two correct artifacts would disagree. Fix the contract. Do not hope the model guesses. |
-| Withheld requirements | Page 13 forbids hiding information. A test that checks an unstated condition is hidden grading. Add the condition to the instruction and the coverage table together, or delete the test. |
+| Withheld requirements | Page 15 forbids hiding information. A test that checks an unstated condition is hidden grading. Add the condition to the instruction and the coverage table together, or delete the test. |
 | Arbitrary formatting traps | Rubric C forbids guess-the-format and trick wording. Exact schema, order, and formatting are legitimate only when the instruction states them so a correct attempt is not failed on a guessable detail. |
 | Impossible resource limits | Rubric E: timeouts and resources must not be too tight to solve. The reference solution has to finish. Tightness the oracle cannot survive is a defect. |
-| Irrelevant busywork | Page 13: padding does not survive later review. Extra commands, repeated files, or a longer instruction do not add horizon. The word-count cap is 1500 by `content.split()`. Length is not difficulty. |
+| Irrelevant busywork | Page 15: padding does not survive later review. Extra commands, repeated files, or a longer instruction do not add horizon. The word-count cap is 1500 by `content.split()`. Length is not difficulty. |
 | Forced tool use | Outcome-verified grading forbids prescribed tools. Name the artifact, not the program that must produce it. |
 | Prescribed solution steps | Enumerated steps cost the outcome-verified criterion. The author’s private stage list stays in `complexity.md`. |
 | Artificial turn inflation | A longer transcript is not long horizon. Do not add chatter, retries of the same command, or filler the verifier ignores. |
@@ -47,7 +47,7 @@ Do not start a difficulty argument until these four are true. They are source re
 
 **Practice.** The proposal names the naive approach and the mechanical reason it fails, inside the length cap. The private record names that approach and at least one more. For each, write the stated requirement it violates. “Stated” means a sentence that will be in `instruction.md`, not a test-only rule.
 
-Then, once the verifier exists, implement each approach as an author-built attempt and record its reward under local measurements. The reward has to be `0.0`. If it is `1.0`, that approach meets the stated requirements and the task is the easy version. Do not respond by adding a hidden assertion. Either the approach is actually inadequate and a stated requirement already says so, in which case the test must assert that requirement, or the task needs a new stated constraint from the page 13 list.
+Then, once the verifier exists, implement each approach as an author-built attempt and record its reward under local measurements. The reward has to be `0.0`. If it is `1.0`, that approach meets the stated requirements and the task is the easy version. Do not respond by adding a hidden assertion. Either the approach is actually inadequate and a stated requirement already says so, in which case the test must assert that requirement, or the task needs a new stated constraint from the page 15 list.
 
 ## Shortcuts
 
@@ -66,7 +66,7 @@ The adversarial loop in `11-validation/VALIDATION.md` is the place those attempt
 
 Use this only after a local naive attempt scores `1.0`, a dry-run finishes in a handful of turns, or a platform receipt says the task is too easy or too short. Quote the receipt if one exists. Do not strengthen because the prose “feels” short.
 
-Allowed moves, from page 13:
+Allowed moves, from page 15:
 
 - More cross-source correlation: the artifact is right only when two or more inputs agree.
 - More state that must stay consistent: a change that satisfies one output field breaks another unless both are recomputed.
@@ -81,8 +81,8 @@ Copy `material/private-authoring/complexity.md` to `evidence/<slug>/complexity.m
 
 | Block | What may appear there | What must not |
 | --- | --- | --- |
-| Proposed targets | The qualitative bars on page 3, and both written ceilings from `DESIGN.md`, each marked with its page. Status of the numeric pair: unresolved. | An observed count. The word “passed.” |
+| Proposed targets | The qualitative bars on page 4, and both written ceilings from `DESIGN.md`, each marked with its page. Status of the numeric pair: unresolved. | An observed count. The word “passed.” |
 | Local measurements | Oracle reward, NOP reward, each naive attempt’s reward, and the dry-run’s model, date, reward, and assistant-message count if the runner exposed one. | A claim that Stage 2 or acceptance will pass or fail. A claim that the task “is” long-horizon. |
 | Platform verdicts | The Stage 2 observed full-credit count, the observed median, the verdict string, and any acceptance numbers a reviewer actually quoted. Blank until those receipts exist. | A number copied from the proposed-target block. A local dry-run count labeled as the median of the eight rollouts. |
 
-`difficulty_explanation` in `task.toml` names the engineering constraint. It does not say “≤2”, “4/8”, “>80”, or “>35”, and it does not say the task has passed a gate that has not been run.
+`difficulty_explanation` in `task.toml` names the engineering constraint. It does not say “≤4”, “4/8”, or “>35”, and it does not say the task has passed a gate that has not been run.

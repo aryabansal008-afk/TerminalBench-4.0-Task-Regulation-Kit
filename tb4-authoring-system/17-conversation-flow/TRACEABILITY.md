@@ -18,6 +18,7 @@ Statuses used on evidence: `NOT STARTED`, `IN PROGRESS`, `PASS`, `FAIL`, `BLOCKE
 | `REQ-W-010`, `REQ-W-012` | `13-packaging/PACKAGE.md`, `14-platform-review/STAGE-1.md` | Not a creation pass | Steps 12 and 14 | Immutable ZIP | `sha256.txt`, `packaging-manifest.md` |
 | `REQ-W-011` | `14-platform-review/STAGE-2.md` | Not a creation pass | Step 14, left `NOT VERIFIED` | Stage 2 predicates | `stage2.txt` |
 | `REQ-W-013` | `14-platform-review/ACCEPTANCE.md` | Not a creation pass | Step 14, left `NOT VERIFIED` | QC then Super QC | `acceptance.txt` |
+| `REQ-S3-001`, `REQ-S3-002` | `14-platform-review/STAGE-3.md` | Not a creation pass | After Stage 2 receipt | Platform Stage 3 verdict | `acceptance.txt`, `review-findings.md` |
 | `REQ-W-015` | `14-platform-review/STAGE-1.md` | `NOT APPLICABLE` until a task row exists | Step 14 if a receipt exists | Blocking-reason column | `stage1.txt` |
 | `REQ-PR-001`–`REQ-PR-034` | `04-proposal/PROPOSAL.md` | Stages 2 and 3 | Step 1 | Proposal text and grant | `proposal.md`, `proposal-receipt.txt` |
 | `REQ-UI-002` | `04-proposal/PROPOSAL.md` | Stage 2 | `NOT APPLICABLE` at zip time | Form prompts already followed | `proposal.md` |
@@ -34,7 +35,7 @@ Statuses used on evidence: `NOT STARTED`, `IN PROGRESS`, `PASS`, `FAIL`, `BLOCKE
 | `REQ-TX-001`–`REQ-TX-009` | `01-taxonomy-and-batch/TAXONOMY.md`, `01-taxonomy-and-batch/BATCH.md` | Stage 1 | Step 1, match only | Chosen category | `selection.md`, `applicability.md` |
 | `REQ-SUB-*` | `01-taxonomy-and-batch/TAXONOMY.md` | Stage 1, one row | Step 1 | The chosen subcategory row is `PASS` as a fit decision. Every other `REQ-SUB-*` row is `NOT APPLICABLE` | `applicability.md` |
 | `REQ-AC-001`–`REQ-AC-013` | `14-platform-review/ACCEPTANCE.md`, `00-source/INVENTORY.md` for `REQ-AC-001` | Not a creation pass | Step 14, `NOT VERIFIED` | Acceptance pipeline | `acceptance.txt` |
-| `REQ-UI-001` | `14-platform-review/ACCEPTANCE.md` | `NOT APPLICABLE` until the UI is on screen | Step 14 | Stage tabs, including deferred Stage 3 | `acceptance.txt` |
+| `REQ-UI-001` | `14-platform-review/STAGE-3.md` | `NOT APPLICABLE` until the UI is on screen | Step 14 | Stage tabs. Platform Stage 3 is qualitative acceptance. | `acceptance.txt` |
 | `REQ-PL-*` | `00-source/PLATFORM-RULE-CATALOG.md` | `NOT APPLICABLE` until a receipt names the rule | Step 10 for G01 shape only as a local refusal of symlinks and extra roots; every `REQ-PL-*` result stays `NOT VERIFIED` until Stage 1 | Platform rule id | `stage1.txt` |
 
 ## Backward map

@@ -1,6 +1,6 @@
 # Platform rule catalog
 
-Normative gate behavior is the prose on pp. 9–11. The rule IDs below are the IDs visible in the Stage 1 screenshots on pp. 10–11. They are platform-controlled. This catalog is not a claim that the screenshot lists every rule the platform will ever run.
+Normative gate behavior is the prose on pp. 10–11. The rule IDs below are the IDs visible in the Stage 1 screenshots on pp. 12–13. They are platform-controlled. This catalog is not a claim that the screenshot lists every rule the platform will ever run. Older screenshots may still show `TB3.*` labels and `Stage 3 • DEFERRED`; SOP v3.0 prose treats Stage 3 as qualitative acceptance.
 
 Confidence:
 
@@ -8,11 +8,11 @@ Confidence:
 - `screenshot` — the ID is legible in both the clean and the rejected screenshots, or legible once and consistent with the gate’s prose. Spelling is normalized (`ORACLE.REWARD_BELOW_FULL`, not the OCR miss).
 - `screenshot-single` — seen clearly on one screenshot only. Treat the ID as real but re-read the live log before writing a fixer that depends on the exact string.
 
-Severity badges are not copied into this catalog. See `U-SEVERITY-ALIGNMENT`. Names containing `ADVISORY` are advisory by the naming rule on p.9. Compose rules are the source’s example of `IF APPLICABLE`.
+Severity badges are not copied into this catalog. See `U-SEVERITY-ALIGNMENT`. Names containing `ADVISORY` are advisory by the naming rule on p.11. Compose rules are the source’s example of `IF APPLICABLE`.
 
 Header facts that are in the screenshots and the prose:
 
-- Tabs: `Stage 0 • Task proposal`, `Stage 1 • Static checks`, `Stage 2 • Model rollout`, `Stage 3 • Qualitative checks` with badge `DEFERRED`.
+- Tabs: `Stage 0 • Task proposal`, `Stage 1 • Static checks`, `Stage 2 • Model rollout`, `Stage 3 • Qualitative checks`. SOP v3.0 prose treats Stage 3 as the acceptance review. Older screenshots may still show `DEFERRED`; follow the prose.
 - Pass banner: `READY_FOR_STAGE2`. The clean example shows `1:12 ELAPSED`, `5 artifacts bound • 2 warnings`, `All gates passed`, `6` gates passed, `94` rules passed, `2` warnings.
 - Fail banner on the example: `NOT_READY`, `Stopped at G05`.
 - A warning count greater than zero can still be `READY_FOR_STAGE2`.
@@ -92,7 +92,7 @@ Prose checks: Harbor layout parses under the pinned Harbor version; required pat
 | `TB3.SUBCATEGORY_INVALID` | rule | screenshot |
 | `TB3.VERIFIER_ISOLATION_REQUIRED` | rule | screenshot |
 
-Canary rules are governed by `C-CANARY`, not by this table alone.
+Canary rules: SOP v3.0 prose uses `TB4.CANARY_*` and advisory severity. Screenshots may still show `TB3.CANARY_*`. Archive the live id.
 
 ## G03 Static execution safety
 
@@ -214,7 +214,7 @@ Prose: binds this ZIP, its receipt, and its artifacts. Sanitises output, closes 
 4. Only one fully green version reaches Stage 2. Partial credit across versions does not count.
 5. Use the durable event log at the bottom of the Stage 1 tab for phase order.
 
-## Stage 2 identifiers confirmed on the p.13 screenshot
+## Stage 2 identifiers confirmed on the p.15 screenshot
 
 These match the prose and are not author-editable:
 
@@ -223,7 +223,7 @@ These match the prose and are not author-editable:
 - Model label: `Anonymous model`
 - `messages • effort high • K=8`
 - `policy FROZEN`
-- Predicates: `count_true(full_credit_boolean) ≤ 2` and `median(assistant_message_count) > 80`
+- Predicates in SOP v3.0 prose: `count_true(full_credit_boolean) ≤ 4` and `median(assistant_message_count) > 35`. Archive whatever the live receipt prints.
 - Overall verdict values include `PASS`, `FAIL`, and, when the population is incomplete, `INDETERMINATE`
 - Blocked example state: `RUNNER_EXECUTION_FAILED`, “Blocked with 0 of 8 rollouts reconciled.”
 - “Platform on-call. No rollout can reconcile and no predicate can move until the blocker clears.”

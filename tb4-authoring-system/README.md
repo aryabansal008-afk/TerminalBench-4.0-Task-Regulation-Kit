@@ -1,6 +1,6 @@
 # TB4 / Thanos task-authoring system
 
-Reusable system for designing, building, validating, and packaging Terminal-Bench 4 tasks. It encodes the 26-page source `Freelancers | Thanos | Guidelines`. This folder does not contain a benchmark task.
+Reusable system for designing, building, validating, and packaging Terminal-Bench 4 tasks. It encodes `Thanos | Guidelines | Onboarding SOP v3.0`. This folder does not contain a benchmark task.
 
 The numbered folders follow the lifecycle. The PDF’s rules are stated once, in the file the requirements register points at. Other files cite that file. A paragraph marked Practice is an engineering recommendation. It does not add a source requirement and it does not decide an unresolved conflict.
 
@@ -20,10 +20,10 @@ The numbered folders follow the lifecycle. The PDF’s rules are stated once, in
 
 | Folder | Responsibility |
 | --- | --- |
-| `00-source/` | Inventory, interpretation, the register, conflicts, unavailable documents, platform rule catalog. |
+| `00-source/` | Inventory, interpretation, the register, conflicts, unavailable documents, platform rule catalog, historical previous-PDF values. |
 | `01-taxonomy-and-batch/` | Categories, subcategories, and batch distribution. |
 | `02-ideation/` | The agent explores the full taxonomy, compares candidates, and records the category, subcategory, language, and task. It does not ask the user. |
-| `03-difficulty-and-horizon/` | Genuine complexity, and the separate records for proposed targets, local measurements, and platform verdicts. The two numeric ceilings stay unresolved. |
+| `03-difficulty-and-horizon/` | Genuine complexity, Stage 2 predicates (≤ 4 of 8; median > 35), and separate records for proposed targets, local measurements, and platform verdicts. |
 | `04-proposal/` | Fields, length, review, grant, frozen scope. |
 | `05-instruction/` | The agent-facing contract and the timeout suffix. |
 | `06-harbor-task/` | Layout, metadata, resources, timeouts. |
@@ -34,7 +34,7 @@ The numbered folders follow the lifecycle. The PDF’s rules are stated once, in
 | `11-validation/` | Oracle, NOP, negative cases, adversarial attempts, reward hacking. |
 | `12-local-trials/` | Local agent trials and what they do not prove. |
 | `13-packaging/` | Archive membership, immutable versions, checksums. |
-| `14-platform-review/` | Stage 1, Stage 2, QC, and the printed acceptance bullets. |
+| `14-platform-review/` | Stage 1, Stage 2, Stage 3 qualitative review, QC, and the printed acceptance bullets. |
 | `15-revision/` | Diagnosis, change impact, revalidation. |
 | `16-evidence-and-handoff/` | Evidence records, human gates, handoffs, upload readiness. |
 | `17-conversation-flow/` | What to attach in a fresh Grok conversation, how to resume, and how to review before packaging. |
@@ -43,7 +43,7 @@ The numbered folders follow the lifecycle. The PDF’s rules are stated once, in
 
 | Folder | Class | In the ZIP |
 | --- | --- | --- |
-| `material/agent-visible/` | Instruction, `task.toml`, agent image | Yes |
+| `material/agent-visible/` | Instruction, task README, `task.toml`, agent image | Yes |
 | `material/verifier-and-solution/` | `solution/` and `tests/` | Yes, and not inside the agent image |
 | `material/private-authoring/` | Proposal skeleton, decision log, compliance report | No |
 | `tools/` | Local preflight and packaging | No |

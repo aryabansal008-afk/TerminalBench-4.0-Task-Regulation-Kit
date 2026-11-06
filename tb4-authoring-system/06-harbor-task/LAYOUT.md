@@ -7,6 +7,7 @@ A TB4 task is a Harbor task with a separate verifier. The verifier container run
 ```
 <task-slug>/
   instruction.md
+  README.md
   task.toml
   environment/
     Dockerfile
@@ -19,7 +20,7 @@ A TB4 task is a Harbor task with a separate verifier. The verifier container run
 
 `check-task-slug`: the folder name is at most 3 hyphen-separated tokens, lowercase kebab-case. `wal-recovery` is legal. `fix-the-wal-recovery` is four tokens and is not.
 
-The DFIR tree on pages 6–7 is an example, not a required file list. Extra files such as `environment/data/`, `solution/solve.py`, and `tests/test_outputs.py` are the usual way to meet the rules below. Copy the pattern when the task needs it. Do not copy those filenames into an unrelated task.
+The DFIR tree on pages 7–8 is an example, not a required file list. Extra files such as `environment/data/`, `solution/solve.py`, and `tests/test_outputs.py` are the usual way to meet the rules below. Copy the pattern when the task needs it. Do not copy those filenames into an unrelated task.
 
 TB1/TB2 tasks were often a handful of files. A real TB4 task usually has more: input fixtures, a multi-file solution, and a real verifier image. Extra files of that kind are expected. “More than five files” does not mean a second task root, a hidden `.git` directory, a credential file, or a copy of the tests inside `environment/`.
 
@@ -36,13 +37,24 @@ In `task.toml`:
 
 ## Clean agent image
 
-`environment/Dockerfile` does not copy `solution/solve.sh`, `tests/test.sh`, or `tests/test_*.py`. The broader rule on page 8 is that it must not copy `tests/` or `solution/` at all, and it must not contain test-only dependencies. Input fixtures the agent is supposed to see live under `environment/` and are copied in by the agent Dockerfile.
+`environment/Dockerfile` does not copy `solution/solve.sh`, `tests/test.sh`, or `tests/test_*.py`. The broader rule on page 9 is that it must not copy `tests/` or `solution/` at all, and it must not contain test-only dependencies. Input fixtures the agent is supposed to see live under `environment/` and are copied in by the agent Dockerfile.
 
 Ground truth used only by the grader belongs in the verifier image. That follows “the agent can never read ground-truth data,” together with rubric “Answer not leaked” and “Frozen ground truth.”
 
 ## Canary
 
-`C-CANARY` is unresolved. Page 1 says not to add canary lines and that nothing issues a canary. Pages 6 and 8 still tell the author to include one. The skeletons contain no canary. Do not add one unless a human records the exact string a live receipt or platform notice issued. Section 4 of this PDF does not define a canary format (`U-CANARY-FORMAT`).
+SOP v3.0 §4.3 requires two Harbor canary comment lines at the top of every checked text file (`instruction.md`, `task.toml`, `environment/Dockerfile`, every text file under `solution/` and `tests/`). Markdown uses `<!-- ... -->`. TOML, Dockerfiles, shell, and Python use `#`. Skip binaries and `environment/data/` fixtures. Use `PRIVATE_PROPOSAL_CANARY_REPLACE_ME` unless a proposal-specific canary was issued. Do not invent a third value. Missing markers are advisory (`TB4.CANARY_*`), not blocking. There is no `canary_string` upload field. Page 8 includes the word `GUID` on line 1; page 21 omits it (`C-CANARY`). Skeletons follow §4.3.
+
+## Task README
+
+The task `README.md` (not this repository’s root README) must contain these headings exactly:
+
+- `## Difficulty explanation`
+- `## Solution explanation`
+- `## Verification explanation`
+- `## Relevant experience`
+
+Missing or misspelled headings fail `tools/check_task.py`.
 
 ## Solution entry
 

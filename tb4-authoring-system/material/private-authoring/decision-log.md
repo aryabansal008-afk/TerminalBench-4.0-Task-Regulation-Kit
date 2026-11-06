@@ -17,6 +17,6 @@ Category, subcategory, programming language, and the task idea are not gates for
 
 Gates that need a block before packaging: `C-CANARY`, `C-ACCOUNT-LIMITS`. `U-LANGUAGE-FIELD` records the UI control’s label, or `not shown`, after the agent has already chosen the language.
 
-`C-CANARY` stays `UNRESOLVED` until a Stage 1 receipt reports the canary rules. A choice written here is `PROVISIONAL`. Do not write a canary string that the platform did not issue.
+`C-CANARY` leftover upload-field text stays open. In-file §4.3 markers are required. Do not invent a proposal-specific canary.
 
-`C-REUPLOADS` is not decided by picking 3 or 7. `C-DIFFICULTY`, `C-HORIZON`, `C-TIMEOUT`, and `C-INTERNET` are not decided by picking the stricter sentence.
+`C-REUPLOADS` workflow uses the limits table (7). Leftover “3” sentences are flagged. `C-DIFFICULTY`, `C-HORIZON`, `C-TIMEOUT`, and `C-INTERNET` are not decided by picking the stricter leftover sentence.

@@ -22,12 +22,12 @@ def main() -> int:
         failures.append("proposal still contains REPLACE_ME")
     if len(text) >= 2000:
         failures.append(
-            f"character count is {len(text)}; p.4 requires under 2000 characters"
+            f"character count is {len(text)}; p.5 requires under 2000 characters"
         )
     if "\n#" in "\n" + text:
         failures.append(
             "markdown heading found; the form asks for two or three paragraphs, "
-            "and p.7 treats tidy headings as unreviewed LLM synthesis"
+            "and p.8 treats tidy headings as unreviewed LLM synthesis"
         )
     lowered = text.lower()
     for phrase in ("think step by step", "you are an expert"):

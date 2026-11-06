@@ -2,7 +2,7 @@
 
 Static checks are fast, deterministic, and need no API key and no LLM. They do not judge whether the task is good or hard. Run them locally before every upload. The platform runs them too. A local failure costs nothing. A failure after upload costs a version (`C-REUPLOADS`).
 
-The introductory sentence on page 15 says static checks catch “a missing canary.” The table has no canary check. That disagreement is `C-CANARY`, which is unresolved. Do not add a canary to satisfy the introductory sentence, and do not treat the table’s silence as proof the platform will not ask for one.
+SOP v3.0 still says static checks catch a missing canary. Markers are required in files and graded as Stage 1 warnings, not blockers. `tools/check_task.py` warns on missing or malformed two-line Harbor canaries. It does not fail the preflight for canary alone.
 
 | Check | What it enforces | Where the rule is applied |
 | --- | --- | --- |
@@ -13,7 +13,9 @@ The introductory sentence on page 15 says static checks catch “a missing canar
 | `check-test-file-references` | Every output file referenced by both tests and solution is documented in `instruction.md` or `task.toml`. | `09-verifier/VERIFIER.md` |
 | `check-test-sh-sanity` | `uv venv`, or system-wide Python documented. | `09-verifier/VERIFIER.md` |
 | `check-task-fields` | `author_name`, `author_email`, `difficulty_explanation`, `solution_explanation`, `verification_explanation`, `category`, `tags`, `expert_time_estimate_hours`. | `06-harbor-task/METADATA.md` |
-| `check-task-timeout` | Both `timeout_sec` values ≤ `18000`. The 8-hour acceptance phrase is `C-TIMEOUT`. | `06-harbor-task/METADATA.md` |
+| `check-task-timeout` | `[agent].timeout_sec` is exactly 28800. `[verifier].timeout_sec` is a positive integer ≤ 28800. | `06-harbor-task/METADATA.md` |
+| `check-task-readme` | Task `README.md` has the four exact SOP v3.0 headings. Not the repo root README. | `06-harbor-task/LAYOUT.md` |
+| `check-publication-name` | `[task] name = "terminal-bench/<slug>"` matches the directory slug. | `06-harbor-task/METADATA.md` |
 | `check-instruction-suffix` | Exact timeout line, own paragraph, single trailing newline, `N` = `[agent].timeout_sec`. | `05-instruction/INSTRUCTION.md` |
 | `check-gpu-types` | If present: `T4`, `L4`, `A10`, `L40S`, `A100-40GB`, `A100-80GB`, `H100`, `H200`, `B200`, or `any`. | `06-harbor-task/METADATA.md` |
 | `check-task-slug` | At most 3 hyphen-separated lowercase kebab tokens. | `06-harbor-task/LAYOUT.md` |

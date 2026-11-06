@@ -13,9 +13,9 @@ stage2_verdict: SUPPLY
 Proposed targets, copied here so they are not mistaken for observations:
 
 ```
-stage2_ceiling_quote: count_true(full_credit_boolean) ≤ 2 of 8
+stage2_ceiling_quote: count_true(full_credit_boolean) ≤ 4 of 8
 acceptance_pass_rate_quote: ≤ 0.6 i.e 4/8
-stage2_horizon_quote: median(assistant_message_count) > 80
+stage2_horizon_quote: median(assistant_message_count) > 35
 acceptance_turns_quote: more than 35 turns of all passing runs
 numeric_pair: BLOCKED
 ```
