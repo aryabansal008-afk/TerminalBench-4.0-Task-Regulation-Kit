@@ -10,11 +10,11 @@ The numbered folders follow the lifecycle. The PDF’s rules are stated once, in
 2. [00-source/HOW-TO-READ.md](00-source/HOW-TO-READ.md) — source versus practice, obligation classes, and where a rule lives.
 3. [00-source/CONFLICT-REGISTER.md](00-source/CONFLICT-REGISTER.md) — both sides of each conflict. A later page is not a repeal.
 4. [00-source/REGISTER.md](00-source/REGISTER.md) — every extracted requirement. The same rows are in `REGISTER.csv`.
-5. [material/MATERIAL-CLASSES.md](material/MATERIAL-CLASSES.md) — what the benchmark agent may see, what the verifier may see, and what stays private.
+5. [material/MATERIAL-CLASSES.md](material/MATERIAL-CLASSES.md) — what the benchmark agent may see, what the verifier may see and what stays private.
 6. [13-packaging/ARCHIVE-MEMBERSHIP.md](13-packaging/ARCHIVE-MEMBERSHIP.md) — what is inside the submission ZIP.
 7. [17-conversation-flow/START-FRESH.md](17-conversation-flow/START-FRESH.md) — how to start a task in a new conversation, stage by stage, including a folder-coverage table.
 8. [17-conversation-flow/BUILD-ZIP.md](17-conversation-flow/BUILD-ZIP.md) — how to turn a completed tree into a ZIP, including a folder-coverage table.
-9. [17-conversation-flow/TRACEABILITY.md](17-conversation-flow/TRACEABILITY.md) — requirement prefix to guidance file, checkpoint, artifact, and evidence.
+9. [17-conversation-flow/TRACEABILITY.md](17-conversation-flow/TRACEABILITY.md) — requirement prefix to guidance file, checkpoint, artifact and evidence.
 
 ## Lifecycle
 
